@@ -1,0 +1,71 @@
+import React, { useState, useEffect, useMemo } from "react";
+import { useRouter } from "next/router";
+import { withApollo } from "../libs/apollo";
+import AdminArea from "../components/AdminArea";
+import Head from "next/head";
+
+import gql from "graphql-tag";
+import { useMutation, useApolloClient, useQuery } from "@apollo/client";
+import dayjs from "dayjs";
+import { FormModal } from "../components/Modal";
+
+const Dashboard = () => {
+  const router = useRouter();
+  const [showModal, setShowModal] = useState(false);
+  useEffect(() => {
+    router.replace({
+      pathname: "/overall-dashboard",
+      query: {
+        ...router.query,
+        // studentId: router.query?.studentId || allStudents[0]?._id || "",
+      },
+    });
+  }, []);
+  return (
+    <AdminArea urlQuery={router.query}>
+      <Head>
+        <title>Dashboard</title>
+      </Head>
+      <FormModal
+        visible={showModal}
+        onClose={() => setShowModal(false)}
+        size="lg"
+      >
+        <div className="relative">
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              setShowModal(false);
+            }}
+            className="absolute top-2 right-2 z-10 bg-red-500 rounded-full p-2 shadow-lg hover:bg-red-600 transition-colors duration-200"
+          >
+            <i className="fa fa-times text-white text-lg"></i>
+          </button>
+          <img
+            className="w-128 h-128 mx-auto pl-4"
+            src="/doa/images/AIMS-Announcement.jpeg"
+          />
+        </div>
+      </FormModal>
+      <div className="mt-28 h-screen flex justify-center">
+        <iframe
+          title="Report Section"
+          width="100%"
+          height="100%"
+          src="https://app.powerbi.com/view?r=eyJrIjoiMTIzZjJkZDMtNGI4Ni00NzIzLWJlZmItZjEyN2ZjN2ZlZTE5IiwidCI6IjljN2ZiNmU3LTM0YzUtNGMyZS1hYTVjLWJhZjAyY2E2MzcxMSIsImMiOjEwfQ%3D%3D"
+          frameborder="0"
+          allowFullScreen="true"
+        ></iframe>
+        {/* <iframe
+          title="LKM Dashboard"
+          width="100%"
+          height="100%"
+          src="https://app.powerbi.com/view?r=eyJrIjoiMjAyNDA2NDctMDA2ZC00YWU5LTllYjktZTRjZmUyM2FiNDNiIiwidCI6IjNiNmFjMTJhLTgwMDAtNGYwZS1iYmMyLWYwNzhiNTY0NGFlNiIsImMiOjEwfQ%3D%3D&pageName=ReportSection"
+          frameborder="0"
+          allowFullScreen="true"
+        /> */}
+      </div>
+    </AdminArea>
+  );
+};
+export default withApollo({ ssr: true })(Dashboard);

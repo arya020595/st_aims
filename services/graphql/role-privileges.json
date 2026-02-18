@@ -1,0 +1,1334 @@
+[
+  {
+    "key": "Overall Dashboard",
+    "label": "Overall Dashboard",
+    "permissions": ["Read"],
+    "parentMenu": "Overall Dashboard",
+    "app": "Overall Dashboard"
+  },
+  {
+    "key": "Dashboard Livestock",
+    "label": "Dashboard Livestock",
+    "permissions": ["Read"],
+    "parentMenu": "Dashboard",
+    "app": "Livestock"
+  },
+  {
+    "key": "Dashboard Broiler",
+    "label": "Dashboard Broiler",
+    "permissions": ["Read"],
+    "parentMenu": "Broiler",
+    "app": "Livestock"
+  },
+  {
+    "key": "Broiler",
+    "label": "Broiler",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Broiler",
+    "app": "Livestock"
+  },
+  {
+    "key": "Broiler Export Excel",
+    "label": "Broiler Export Excel",
+    "permissions": ["Read"],
+    "parentMenu": "Broiler",
+    "app": "Livestock"
+  },
+  {
+    "key": "Dashboard Table Eggs",
+    "label": "Dashboard Table Eggs",
+    "permissions": ["Read"],
+    "parentMenu": "Table Eggs",
+    "app": "Livestock"
+  },
+  {
+    "key": "Table Eggs",
+    "label": "Table Eggs",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Table Eggs",
+    "app": "Livestock"
+  },
+  {
+    "key": "Table Eggs Export Excel",
+    "label": "Table Eggs Export Excel",
+    "permissions": ["Read"],
+    "parentMenu": "Table Eggs",
+    "app": "Livestock"
+  },
+  {
+    "key": "Dashboard Day Old Chick",
+    "label": "Dashboard Day Old Chick",
+    "permissions": ["Read"],
+    "parentMenu": "Day Old Chick",
+    "app": "Livestock"
+  },
+  {
+    "key": "Day Old Chick",
+    "label": "Day Old Chick",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Day Old Chick",
+    "app": "Livestock"
+  },
+  {
+    "key": "Day Old Chick Export Excel",
+    "label": "Day Old Chick Export Excel",
+    "permissions": ["Read"],
+    "parentMenu": "Day Old Chick",
+    "app": "Livestock"
+  },
+  {
+    "key": "Dashboard Fertilized Eggs",
+    "label": "Dashboard Fertilized Eggs",
+    "permissions": ["Read"],
+    "parentMenu": "Fertilized Eggs",
+    "app": "Livestock"
+  },
+  {
+    "key": "Fertilized Eggs",
+    "label": "Fertilized Eggs",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Fertilized Eggs",
+    "app": "Livestock"
+  },
+  {
+    "key": "Fertilized Eggs Export Excel",
+    "label": "Fertilized Eggs Export Excel",
+    "permissions": ["Read"],
+    "parentMenu": "Fertilized Eggs",
+    "app": "Livestock"
+  },
+  {
+    "key": "Dashboard Ruminant Livestock",
+    "label": "Dashboard Ruminant Livestock",
+    "permissions": ["Read"],
+    "parentMenu": "Ruminant",
+    "app": "Livestock"
+  },
+  {
+    "key": "Ruminant Livestock",
+    "label": "Ruminant Livestock",
+    "permissions": ["Read"],
+    "parentMenu": "Ruminant",
+    "app": "Livestock"
+  },
+  {
+    "key": "Stock",
+    "label": "Stock",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Ruminant",
+    "app": "Livestock"
+  },
+  {
+    "key": "Stock Export Excel",
+    "label": "Stock Export Excel",
+    "permissions": ["Read"],
+    "parentMenu": "Ruminant",
+    "app": "Livestock"
+  },
+  {
+    "key": "Production",
+    "label": "Production",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Ruminant",
+    "app": "Livestock"
+  },
+  {
+    "key": "Production Export Excel",
+    "label": "Production Export Excel",
+    "permissions": ["Read"],
+    "parentMenu": "Ruminant",
+    "app": "Livestock"
+  },
+  {
+    "key": "Dashboard Miscellaneous Livestock",
+    "label": "Dashboard Miscellaneous Livestock",
+    "permissions": ["Read"],
+    "parentMenu": "Miscellaneous Livestock",
+    "app": "Livestock"
+  },
+  {
+    "key": "Miscellaneous Livestock",
+    "label": "Miscellaneous Livestock",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Miscellaneous Livestock",
+    "app": "Livestock"
+  },
+  {
+    "key": "Miscellaneous Livestock Export Excel",
+    "label": "Miscellaneous Livestock Export Excel",
+    "permissions": ["Read"],
+    "parentMenu": "Miscellaneous Livestock",
+    "app": "Livestock"
+  },
+  {
+    "key": "Dashboard Livestock Feed",
+    "label": "Dashboard Livestock Feed",
+    "permissions": ["Read"],
+    "parentMenu": "Livestock Feed",
+    "app": "Livestock"
+  },
+  {
+    "key": "Livestock Feed",
+    "label": "Livestock Feed",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Livestock Feed",
+    "app": "Livestock"
+  },
+  {
+    "key": "Livestock Feed Export Excel",
+    "label": "Livestock Feed Export Excel",
+    "permissions": ["Read"],
+    "parentMenu": "Livestock Feed",
+    "app": "Livestock"
+  },
+  {
+    "key": "Profiling Livestock",
+    "label": "Profiling Livestock",
+    "permissions": ["Read"],
+    "parentMenu": "Profiling",
+    "app": "Livestock"
+  },
+  {
+    "key": "Dashboard Profiling Livestock",
+    "label": "Dashboard Profiling Livestock",
+    "permissions": ["Read"],
+    "parentMenu": "Profiling",
+    "app": "Livestock"
+  },
+  {
+    "key": "Supplier",
+    "label": "Supplier",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Profiling",
+    "app": "Livestock"
+  },
+  {
+    "key": "Machinery Livestock",
+    "label": "Machinery Livestock",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Profiling",
+    "app": "Livestock"
+  },
+  {
+    "key": "Company Status Livestock",
+    "label": "Company Status Livestock",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Profiling",
+    "app": "Livestock"
+  },
+  {
+    "key": "Race Profiling Livestock",
+    "label": "Race Profiling Livestock",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Profiling",
+    "app": "Livestock"
+  },
+  {
+    "key": "Planting System",
+    "label": "Planting System",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Profiling",
+    "app": "Livestock"
+  },
+  {
+    "key": "Farming System",
+    "label": "Farming System",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Profiling",
+    "app": "Livestock"
+  },
+  {
+    "key": "Commodity Type",
+    "label": "Commodity Type",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Profiling",
+    "app": "Livestock"
+  },
+  {
+    "key": "Award Type Profiling Livestock",
+    "label": "Award Type Profiling Livestock",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Profiling",
+    "app": "Livestock"
+  },
+  {
+    "key": "Land Ownership Status",
+    "label": "Land Ownership Status",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Profiling",
+    "app": "Livestock"
+  },
+  {
+    "key": "Irrigation Status",
+    "label": "Irrigation Status",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Profiling",
+    "app": "Livestock"
+  },
+  {
+    "key": "Support Type",
+    "label": "Support Type",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Profiling",
+    "app": "Livestock"
+  },
+  {
+    "key": "Type Company Reg",
+    "label": "Type of Company Reg",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Profiling",
+    "app": "Livestock"
+  },
+  {
+    "key": "Current Status",
+    "label": "Current Status",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Profiling",
+    "app": "Livestock"
+  },
+  {
+    "key": "Contract Status Profiling Livestock",
+    "label": "Contract Status Profiling Livestock",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Profiling",
+    "app": "Livestock"
+  },
+  {
+    "key": "Farmer Profile Livestock",
+    "label": "Farmer Profile Livestock",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Profiling",
+    "app": "Livestock"
+  },
+  {
+    "key": "Farmer Profile Livestock Export Excel",
+    "label": "Farmer Profile Livestock Export Excel",
+    "permissions": ["Create"],
+    "parentMenu": "Profiling",
+    "app": "Livestock"
+  },
+  {
+    "key": "Farm Profile",
+    "label": "Farm Profile",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Profiling",
+    "app": "Livestock"
+  },
+  {
+    "key": "Farm Profile Export Excel",
+    "label": "Farm Profile Export Excel",
+    "permissions": ["Create"],
+    "parentMenu": "Profiling",
+    "app": "Livestock"
+  },
+  {
+    "key": "Modern Technology Profiling Livestock",
+    "label": "Modern Technology Profiling Livestock",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Profiling",
+    "app": "Livestock"
+  },
+  {
+    "key": "Retail Price Livestock",
+    "label": "Retail Price Livestock",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Retail Price",
+    "app": "Livestock"
+  },
+  {
+    "key": "Master Data Livestock",
+    "label": "Master Data Livestock",
+    "permissions": ["Read"],
+    "parentMenu": "Master Data",
+    "app": "Livestock"
+  },
+  {
+    "key": "Category Livestock",
+    "label": "Category Livestock",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Master Data",
+    "app": "Livestock"
+  },
+  {
+    "key": "Position Master Data Livestock",
+    "label": "Position Master Data Livestock",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Master Data",
+    "app": "Livestock"
+  },
+  {
+    "key": "Farm Location",
+    "label": "Farm Location",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Master Data",
+    "app": "Livestock"
+  },
+  {
+    "key": "Livestock",
+    "label": "Livestock",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Master Data",
+    "app": "Livestock"
+  },
+  {
+    "key": "Animal Feed",
+    "label": "Animal Feed",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Master Data",
+    "app": "Livestock"
+  },
+  {
+    "key": "Poultry House",
+    "label": "Poultry House",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Master Data",
+    "app": "Livestock"
+  },
+  {
+    "key": "Ruminant Pens",
+    "label": "Ruminant Pens",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Master Data",
+    "app": "Livestock"
+  },
+  {
+    "key": "Vegetable",
+    "label": "Vegetable",
+    "permissions": ["Read"],
+    "parentMenu": "Vegetable",
+    "app": "Crops"
+  },
+  {
+    "key": "Dashboard Vegetable",
+    "label": "Dashboard Vegetable",
+    "permissions": ["Read"],
+    "parentMenu": "Vegetable",
+    "app": "Crops"
+  },
+  {
+    "key": "Production Vegetable",
+    "label": "Production Vegetable",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Vegetable",
+    "app": "Crops"
+  },
+  {
+    "key": "Production Vegetable Export Excel",
+    "label": "Production Vegetable Export Excel",
+    "permissions": ["Read"],
+    "parentMenu": "Vegetable",
+    "app": "Crops"
+  },
+  {
+    "key": "Fruit",
+    "label": "Fruit",
+    "permissions": ["Read"],
+    "parentMenu": "Fruit",
+    "app": "Crops"
+  },
+  {
+    "key": "Dashboard Fruit",
+    "label": "Dashboard Fruit",
+    "permissions": ["Read"],
+    "parentMenu": "Fruit",
+    "app": "Crops"
+  },
+  {
+    "key": "Production Fruit",
+    "label": "Production Fruit",
+    "permissions": ["Read"],
+    "parentMenu": "Fruit",
+    "app": "Crops"
+  },
+  {
+    "key": "Actual Production Fruit",
+    "label": "Actual Production Fruit",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Fruit",
+    "app": "Crops"
+  },
+  {
+    "key": "Actual Production Fruit Export Excel",
+    "label": "Actual Production Fruit Export Excel",
+    "permissions": ["Read"],
+    "parentMenu": "Fruit",
+    "app": "Crops"
+  },
+  {
+    "key": "Estimate Production Fruit",
+    "label": "Estimate Production Fruit",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Fruit",
+    "app": "Crops"
+  },
+  {
+    "key": "Estimate Production Fruit Export Excel",
+    "label": "Estimate Production Fruit Export Excel",
+    "permissions": ["Read"],
+    "parentMenu": "Fruit",
+    "app": "Crops"
+  },
+  {
+    "key": "Paddy",
+    "label": "Paddy",
+    "permissions": ["Read"],
+    "parentMenu": "Paddy",
+    "app": "Crops"
+  },
+  {
+    "key": "Dashboard Paddy",
+    "label": "Dashboard Paddy",
+    "permissions": ["Read"],
+    "parentMenu": "Paddy",
+    "app": "Crops"
+  },
+  {
+    "key": "Paddy Production",
+    "label": "Paddy Production",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Paddy",
+    "app": "Crops"
+  },
+  {
+    "key": "Paddy Production Export Excel",
+    "label": "Paddy Production Export Excel",
+    "permissions": ["Read"],
+    "parentMenu": "Paddy",
+    "app": "Crops"
+  },
+  {
+    "key": "Paddy Seed Production",
+    "label": "Paddy Seed Production",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Paddy",
+    "app": "Crops"
+  },
+  {
+    "key": "Paddy Seed Production Export Excel",
+    "label": "Paddy Seed Production Export Excel",
+    "permissions": ["Read"],
+    "parentMenu": "Paddy",
+    "app": "Crops"
+  },
+  {
+    "key": "Milled Rice Production",
+    "label": "Milled Rice Production",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Paddy",
+    "app": "Crops"
+  },
+  {
+    "key": "Milled Rice Production Export Excel",
+    "label": "Milled Rice Production Export Excel",
+    "permissions": ["Read"],
+    "parentMenu": "Paddy",
+    "app": "Crops"
+  },
+  {
+    "key": "Paddy Seedling Crops",
+    "label": "Paddy Seedling Crops",
+    "permissions": ["Read"],
+    "parentMenu": "Paddy",
+    "app": "Crops"
+  },
+  {
+    "key": "Paddy Seedling Sales Price",
+    "label": "Paddy Seedling Sales Price",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Paddy",
+    "app": "Crops"
+  },
+  {
+    "key": "Paddy Seedling Sales Price Export Excel",
+    "label": "Paddy Seedling Sales Price Export Excel",
+    "permissions": ["Read"],
+    "parentMenu": "Paddy",
+    "app": "Crops"
+  },
+  {
+    "key": "Paddy Seedling Production",
+    "label": "Paddy Seedling Production",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Paddy",
+    "app": "Crops"
+  },
+  {
+    "key": "Paddy Seedling Production Export Excel",
+    "label": "Paddy Seedling Production Export Excel",
+    "permissions": ["Read"],
+    "parentMenu": "Paddy",
+    "app": "Crops"
+  },
+  {
+    "key": "Miscellaneous Crops",
+    "label": "Miscellaneous Crops",
+    "permissions": ["Read"],
+    "parentMenu": "Miscellaneous Crops",
+    "app": "Crops"
+  },
+  {
+    "key": "Dashboard Miscellaneous Crops",
+    "label": "Dashboard Miscellaneous Crops",
+    "permissions": ["Read"],
+    "parentMenu": "Miscellaneous Crops",
+    "app": "Crops"
+  },
+  {
+    "key": "Production Miscellaneous Crops",
+    "label": "Production Miscellaneous Crops",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Miscellaneous Crops",
+    "app": "Crops"
+  },
+  {
+    "key": "Production Miscellaneous Crops Export Excel",
+    "label": "Production Miscellaneous Crops Export Excel",
+    "permissions": ["Read"],
+    "parentMenu": "Miscellaneous Crops",
+    "app": "Crops"
+  },
+  {
+    "key": "Floriculture",
+    "label": "Floriculture",
+    "permissions": ["Read"],
+    "parentMenu": "Floriculture",
+    "app": "Crops"
+  },
+  {
+    "key": "Dashboard Floriculture",
+    "label": "Dashboard Floriculture",
+    "permissions": ["Read"],
+    "parentMenu": "Floriculture",
+    "app": "Crops"
+  },
+  {
+    "key": "Cut Flower Production",
+    "label": "Cut Flower Production",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Floriculture",
+    "app": "Crops"
+  },
+  {
+    "key": "Cut Flower Production Export Excel",
+    "label": "Cut Flower Production Export Excel",
+    "permissions": ["Read"],
+    "parentMenu": "Floriculture",
+    "app": "Crops"
+  },
+  {
+    "key": "Ornamental Plant Production",
+    "label": "Ornamental Plant Production",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Floriculture",
+    "app": "Crops"
+  },
+  {
+    "key": "Ornamental Plant Production Export Excel",
+    "label": "Ornamental Plant Production Export Excel",
+    "permissions": ["Read"],
+    "parentMenu": "Floriculture",
+    "app": "Crops"
+  },
+  {
+    "key": "Master Data Crops",
+    "label": "Master Data Crops",
+    "permissions": ["Read"],
+    "parentMenu": "Master Data",
+    "app": "Crops"
+  },
+  {
+    "key": "Category Master Data",
+    "label": "Category Master Data",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Master Data",
+    "app": "Crops"
+  },
+  {
+    "key": "Season",
+    "label": "Season",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Master Data",
+    "app": "Crops"
+  },
+  {
+    "key": "Vegetable Master Data",
+    "label": "Vegetable Master Data",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Master Data",
+    "app": "Crops"
+  },
+  {
+    "key": "Fruit Master Data",
+    "label": "Fruit Master Data",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Master Data",
+    "app": "Crops"
+  },
+  {
+    "key": "Fruit Detail Master Data",
+    "label": "Fruit Detail Master Data",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Master Data",
+    "app": "Crops"
+  },
+  {
+    "key": "Paddy Master Data Crops",
+    "label": "Paddy Master Data Crops",
+    "permissions": ["Read"],
+    "parentMenu": "Master Data",
+    "app": "Crops"
+  },
+  {
+    "key": "Paddy Variety Paddy Master Data Crops",
+    "label": "Paddy Variety Paddy Master Data Crops",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Master Data",
+    "app": "Crops"
+  },
+  {
+    "key": "Paddy Seed Variety Paddy Master Data Crops",
+    "label": "Paddy Seed Variety Paddy Master Data Crops",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Master Data",
+    "app": "Crops"
+  },
+  {
+    "key": "Paddy Seedling Variety Paddy Master Data Crops",
+    "label": "Paddy Seedling Variety Paddy Master Data Crops",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Master Data",
+    "app": "Crops"
+  },
+  {
+    "key": "Milled Rice Paddy Master Data Crops",
+    "label": "Milled Rice Paddy Master Data Crops",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Master Data",
+    "app": "Crops"
+  },
+  {
+    "key": "By Product Paddy Master Data Crops",
+    "label": "By Product Paddy Master Data Crops",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Master Data",
+    "app": "Crops"
+  },
+  {
+    "key": "Milled Rice Location Paddy Master Data Crops",
+    "label": "Milled Rice Location Paddy Master Data Crops",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Master Data",
+    "app": "Crops"
+  },
+  {
+    "key": "Miscellaneous Crops Master Data",
+    "label": "Miscellaneous Crops Master Data",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Master Data",
+    "app": "Crops"
+  },
+  {
+    "key": "Floriculture Master Data",
+    "label": "Floriculture Master Data",
+    "permissions": ["Read"],
+    "parentMenu": "Master Data",
+    "app": "Crops"
+  },
+  {
+    "key": "Cut Flower Floriculture",
+    "label": "Cut Flower Floriculture",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Master Data",
+    "app": "Crops"
+  },
+  {
+    "key": "Ornamental Plant Floriculture",
+    "label": "Ornamental Plant Floriculture",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Master Data",
+    "app": "Crops"
+  },
+  {
+    "key": "Selling Location Floriculture",
+    "label": "Selling Location Floriculture",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Master Data",
+    "app": "Crops"
+  },
+  {
+    "key": "Retail Price Crops",
+    "label": "Retail Price Crops",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Retail Price",
+    "app": "Crops"
+  },
+  {
+    "key": "Profiling Crops",
+    "label": "Profiling Crops",
+    "permissions": ["Read"],
+    "parentMenu": "Profiling",
+    "app": "Crops"
+  },
+  {
+    "key": "Dashboard Profiling Crops",
+    "label": "Dashboard Profiling Crops",
+    "permissions": ["Read"],
+    "parentMenu": "Profiling",
+    "app": "Crops"
+  },
+  {
+    "key": "Supplier Profiling Crops",
+    "label": "Supplier Profiling Crops",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Profiling",
+    "app": "Crops"
+  },
+  {
+    "key": "Machinery Profiling Crops",
+    "label": "Machinery Profiling Crops",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Profiling",
+    "app": "Crops"
+  },
+  {
+    "key": "Company Status Profiling Crops",
+    "label": "Company Status Profiling Crops",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Profiling",
+    "app": "Crops"
+  },
+  {
+    "key": "Race Profiling Crops",
+    "label": "Race Profiling Crops",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Profiling",
+    "app": "Crops"
+  },
+  {
+    "key": "Planting System Profiling Crops",
+    "label": "Planting System Profiling Crops",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Profiling",
+    "app": "Crops"
+  },
+  {
+    "key": "Farming System Profiling Crops",
+    "label": "Farming System Profiling Crops",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Profiling",
+    "app": "Crops"
+  },
+  {
+    "key": "Commodity Type Profiling Crops",
+    "label": "Commodity Type Profiling Crops",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Profiling",
+    "app": "Crops"
+  },
+  {
+    "key": "Award Type Profiling Crops",
+    "label": "Award Type Profiling Crops",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Profiling",
+    "app": "Crops"
+  },
+  {
+    "key": "Land Ownership Status Profiling Crops",
+    "label": "Land Ownership Status Profiling Crops",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Profiling",
+    "app": "Crops"
+  },
+  {
+    "key": "Irrigation Status Profiling Crops",
+    "label": "Irrigation Status Profiling Crops",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Profiling",
+    "app": "Crops"
+  },
+  {
+    "key": "Support Type Profiling Crops",
+    "label": "Support Type Profiling Crops",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Profiling",
+    "app": "Crops"
+  },
+  {
+    "key": "Type Company Reg Profiling Crops",
+    "label": "Type Company Reg Profiling Crops",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Profiling",
+    "app": "Crops"
+  },
+  {
+    "key": "Current Status Profiling Crops",
+    "label": "Current Status Profiling Crops",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Profiling",
+    "app": "Crops"
+  },
+  {
+    "key": "Contract Status Profiling Crops",
+    "label": "Contract Status Profiling Crops",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Profiling",
+    "app": "Crops"
+  },
+  {
+    "key": "Farmer Profiling Crops",
+    "label": "Farmer Profiling Crops",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Profiling",
+    "app": "Crops"
+  },
+  {
+    "key": "Farmer Profiling Crops Export Excel",
+    "label": "Farmer Profiling Crops Export Excel",
+    "permissions": ["Create"],
+    "parentMenu": "Profiling",
+    "app": "Crops"
+  },
+  {
+    "key": "Farm Profiling Crops",
+    "label": "Farm Profiling Crops",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Profiling",
+    "app": "Crops"
+  },
+  {
+    "key": "Farm Profiling Crops Export Excel",
+    "label": "Farm Profiling Crops Export Excel",
+    "permissions": ["Create"],
+    "parentMenu": "Profiling",
+    "app": "Crops"
+  },
+  {
+    "key": "Modern Technology Profiling Crops",
+    "label": "Modern Technology Profiling Crops",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Profiling",
+    "app": "Crops"
+  },
+  {
+    "key": "Farm Location Crops",
+    "label": "Farm Location Crops",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Master Data",
+    "app": "Crops"
+  },
+  {
+    "key": "Vegetable Retail Price",
+    "label": "Vegetable Retail Price",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Retail Price",
+    "app": "Crops"
+  },
+  {
+    "key": "Fruit Retail Price",
+    "label": "Fruit Retail Price",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Retail Price",
+    "app": "Crops"
+  },
+  {
+    "key": "Miscellaneous Crops Retail Price",
+    "label": "Miscellaneous Crops Retail Price",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Retail Price",
+    "app": "Crops"
+  },
+  {
+    "key": "Dashboard Agrifood",
+    "label": "Dashboard Agrifood",
+    "permissions": ["Read"],
+    "parentMenu": "Dashboard",
+    "app": "Agrifood"
+  },
+  {
+    "key": "Production Agrifood",
+    "label": "Production Agrifood",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Production",
+    "app": "Agrifood"
+  },
+  {
+    "key": "Product Catalogue",
+    "label": "Product Catalogue",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Production",
+    "app": "Agrifood"
+  },
+
+  {
+    "key": "Product Catalogue Details",
+    "label": "Product Catalogue Details",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Production",
+    "app": "Agrifood"
+  },
+
+  {
+    "key": "SEFI Rental",
+    "label": "SEFI Rental",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "SEFI Rental",
+    "app": "Agrifood"
+  },
+  {
+    "key": "Food Sampling",
+    "label": "Food Sampling",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Food Sampling",
+    "app": "Agrifood"
+  },
+  {
+    "key": "Master Data Agrifood",
+    "label": "Master Data Agrifood",
+    "permissions": ["Read"],
+    "parentMenu": "Master Data",
+    "app": "Agrifood"
+  },
+  {
+    "key": "Machinery Agrifood",
+    "label": "Machinery Agrifood",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Master Data",
+    "app": "Agrifood"
+  },
+  {
+    "key": "Test Agrifood",
+    "label": "Test Agrifood",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Master Data",
+    "app": "Agrifood"
+  },
+  {
+    "key": "SEFI Rental Machinaries",
+    "label": "SEFI Rental Machinaries",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Master Data",
+    "app": "Agrifood"
+  },
+  {
+    "key": "Product Category",
+    "label": "Product Category",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Master Data",
+    "app": "Agrifood"
+  },
+  {
+    "key": "Sub Product Category",
+    "label": "Sub Product Category",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Master Data",
+    "app": "Agrifood"
+  },
+  {
+    "key": "Type Of Analysis",
+    "label": "Type Of Analysis",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Master Data",
+    "app": "Agrifood"
+  },
+  {
+    "key": "Unit",
+    "label": "Unit",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Master Data",
+    "app": "Agrifood"
+  },
+  {
+    "key": "Condition",
+    "label": "Condition",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Master Data",
+    "app": "Agrifood"
+  },
+  {
+    "key": "Profiling Agrifood",
+    "label": "Profiling Agrifood",
+    "permissions": ["Read"],
+    "parentMenu": "Profiling",
+    "app": "Agrifood"
+  },
+  {
+    "key": "Company Status Agrifood",
+    "label": "Company Status Agrifood",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Profiling",
+    "app": "Agrifood"
+  },
+  {
+    "key": "Location",
+    "label": "Location",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Profiling",
+    "app": "Agrifood"
+  },
+  {
+    "key": "Position Profiling Agrifood",
+    "label": "Position Profiling Agrifood",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Profiling",
+    "app": "Agrifood"
+  },
+  {
+    "key": "Race Profiling Agrifood",
+    "label": "Race Profiling Agrifood",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Profiling",
+    "app": "Agrifood"
+  },
+  {
+    "key": "Award Type Profiling Agrifood",
+    "label": "Award Type Profiling Agrifood",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Profiling",
+    "app": "Agrifood"
+  },
+  {
+    "key": "Contract Status Profiling Agrifood",
+    "label": "Contract Status Profiling Agrifood",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Profiling",
+    "app": "Agrifood"
+  },
+  {
+    "key": "Premise Profile",
+    "label": "Premise Profile",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Profiling",
+    "app": "Agrifood"
+  },
+  {
+    "key": "Premise Profile Export Excel",
+    "label": "Premise Profile Export Excel",
+    "permissions": ["Create"],
+    "parentMenu": "Profiling",
+    "app": "Agrifood"
+  },
+  {
+    "key": "Company Profile Profiling Agrifood",
+    "label": "Company Profile Profiling Agrifood",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Profiling",
+    "app": "Agrifood"
+  },
+  {
+    "key": "Company Profile Profiling Agrifood Export Excel",
+    "label": "Company Profile Profiling Agrifood Export Excel",
+    "permissions": ["Create"],
+    "parentMenu": "Profiling",
+    "app": "Agrifood"
+  },
+  {
+    "key": "Dashboard Bio Security",
+    "label": "Dashboard Bio Security",
+    "permissions": ["Read"],
+    "parentMenu": "Dashboard",
+    "app": "Bio Security"
+  },
+  {
+    "key": "Import Data",
+    "label": "Import Data",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Import Data",
+    "app": "Bio Security"
+  },
+  {
+    "key": "Non Compliance & Enforcement",
+    "label": "Non Compliance & Enforcement",
+    "permissions": ["Read"],
+    "parentMenu": "Non Compliance & Enforcement",
+    "app": "Bio Security"
+  },
+  {
+    "key": "Commercial Non Compliance & Enforcement",
+    "label": "Commercial Non Compliance & Enforcement",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Non Compliance & Enforcement",
+    "app": "Bio Security"
+  },
+  {
+    "key": "Personal Non Compliance & Enforcement",
+    "label": "Personal Non Compliance & Enforcement",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Non Compliance & Enforcement",
+    "app": "Bio Security"
+  },
+  {
+    "key": "Personal Concession Non Compliance & Enforcement",
+    "label": "Personal Concession Non Compliance & Enforcement",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Non Compliance & Enforcement",
+    "app": "Bio Security"
+  },
+  {
+    "key": "Master Data Bio Security",
+    "label": "Master Data Bio Security",
+    "permissions": ["Read"],
+    "parentMenu": "Master Data",
+    "app": "Bio Security"
+  },
+  {
+    "key": "Category",
+    "label": "Category",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Master Data",
+    "app": "Bio Security"
+  },
+  {
+    "key": "Sub Category",
+    "label": "Sub Category",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Master Data",
+    "app": "Bio Security"
+  },
+  {
+    "key": "Unit Bio Security",
+    "label": "Unit Bio Security",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Master Data",
+    "app": "Bio Security"
+  },
+  {
+    "key": "Type Of Comodity",
+    "label": "Type Of Comodity",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Master Data",
+    "app": "Bio Security"
+  },
+  {
+    "key": "Country Bio Security",
+    "label": "Country Bio Security",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Master Data",
+    "app": "Bio Security"
+  },
+  {
+    "key": "Compliance",
+    "label": "Compliance",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Master Data",
+    "app": "Bio Security"
+  },
+  {
+    "key": "Taken Action",
+    "label": "Taken Action",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Master Data",
+    "app": "Bio Security"
+  },
+  {
+    "key": "Profiling Bio Security",
+    "label": "Profiling Bio Security",
+    "permissions": ["Read"],
+    "parentMenu": "Profiling",
+    "app": "Bio Security"
+  },
+  {
+    "key": "Company Profile Profiling Bio Security",
+    "label": "Company Profile Profiling Bio Security",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Profiling",
+    "app": "Bio Security"
+  },
+  {
+    "key": "Individual / Personal Profile",
+    "label": "Individual / Personal Profile",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Profiling",
+    "app": "Bio Security"
+  },
+  {
+    "key": "Notification",
+    "label": "Notification",
+    "permissions": ["Read"],
+    "parentMenu": "",
+    "app": ""
+  },
+  {
+    "key": "User Roles",
+    "label": "User Roles",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "User Roles",
+    "app": "User Management"
+  },
+  {
+    "key": "User Admin",
+    "label": "User Admin",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "User Admin",
+    "app": "User Management"
+  },
+  {
+    "key": "User Management",
+    "label": "User Management",
+    "permissions": ["Read"],
+    "parentMenu": "User Management",
+    "app": "User Management"
+  },
+  {
+    "key": "Farmer Registration",
+    "label": "Farmer Registration",
+    "permissions": ["Read", "Update", "Delete"],
+    "parentMenu": "Farmer Registration",
+    "app": "User Management"
+  },
+  {
+    "key": "User Management Only For Farmer",
+    "label": "User Management Only For Farmer",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "User Management",
+    "app": "User Management"
+  },
+  {
+    "key": "Livestock App Menu",
+    "label": "Livestock App Menu",
+    "permissions": ["Read"],
+    "parentMenu": "DoAA Menu",
+    "app": "DoAA Menu"
+  },
+  {
+    "key": "Crops App Menu",
+    "label": "Crops App Menu",
+    "permissions": ["Read"],
+    "parentMenu": "DoAA Menu",
+    "app": "DoAA Menu"
+  },
+  {
+    "key": "Agrifood Menu",
+    "label": "Agrifood Menu",
+    "permissions": ["Read"],
+    "parentMenu": "DoAA Menu",
+    "app": "DoAA Menu"
+  },
+  {
+    "key": "Biosecurity Menu",
+    "label": "Biosecurity Menu",
+    "permissions": ["Read"],
+    "parentMenu": "DoAA Menu",
+    "app": "DoAA Menu"
+  },
+  {
+    "key": "User Management Menu",
+    "label": "User Management Menu",
+    "permissions": ["Read"],
+    "parentMenu": "DoAA Menu",
+    "app": "DoAA Menu"
+  },
+  {
+    "key": "Livestock Commodity",
+    "label": "Livestock Commodity",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Master Data",
+    "app": "Livestock"
+  },
+  {
+    "key": "Livestock Unit",
+    "label": "Livestock Unit",
+    "permissions": ["Create", "Read", "Update", "Delete"],
+    "parentMenu": "Master Data",
+    "app": "Livestock"
+  }
+]

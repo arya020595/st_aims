@@ -1,0 +1,33 @@
+{
+  "name": "DoAA",
+  "private": true,
+  "workspaces": [
+    "services/*"
+  ],
+  "devDependencies": {
+    "concurrently": "^6.1.0",
+    "lerna": "^3.22.1"
+  },
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "graphql:dev": "lerna run --stream graphql:dev",
+    "graphql": "lerna run --stream graphql",
+    "app:dev": "lerna run --stream app:dev",
+    "app": "lerna run --stream app",
+    "docs:dev": "lerna run --stream docs:dev",
+    "docs": "lerna run --stream docs",
+    "websocket": "lerna run --stream websocket"
+  },
+  "trustedDependencies": [
+    "@apollo/protobufjs",
+    "@prisma/client",
+    "@prisma/engines",
+    "aws-sdk",
+    "core-js",
+    "core-js-pure",
+    "dtrace-provider",
+    "lzma-native",
+    "prisma",
+    "protobufjs"
+  ]
+}

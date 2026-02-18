@@ -1,0 +1,3087 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model ActivityLogs {
+  id        BigInt    @id @default(autoincrement())
+  uuid      String    @unique @db.VarChar(50)
+  type      String?   @map("type")
+  tableName String?   @map("tableName")
+  log       Json?     @map("log")
+  userId    String?   @map("user_id") @db.Text
+  createdAt DateTime? @map("created_at") @db.Timestamp
+  updatedAt DateTime? @map("updated_at") @db.Timestamp
+
+  @@map("activityLogs")
+}
+
+model LivestockCategory {
+  id           BigInt   @id @default(autoincrement())
+  uuid         String   @unique @db.VarChar(50)
+  code         String   @map("code") @db.Text
+  categoryName String   @map("livestock_category") @db.Text
+  createdAt    DateTime @map("created_at") @db.Timestamp
+  updatedAt    DateTime @map("updated_at") @db.Timestamp
+  deletedAt    String?  @map("deleted_at") @db.Text
+  createdBy    Json?    @map("created_by")
+  updatedBy    Json?    @map("updated_by")
+  deletedBy    Json?    @map("deleted_by")
+  // Livestock    Livestock[]
+
+  @@map("livestockCategories")
+}
+
+model Livestock {
+  id                  BigInt  @id @default(autoincrement())
+  uuid                String  @unique @db.VarChar(50)
+  // livestockCategory   LivestockCategory? @relation(fields: [livestockCategoryId], references: [uuid])
+  livestockCategoryId String? @map("livestock_category_uuid") @db.VarChar(50)
+
+  typeOfLiveStock String   @map("type_of_livestock") @db.Text
+  createdAt       DateTime @map("created_at") @db.Timestamp
+  updatedAt       DateTime @map("updated_at") @db.Timestamp
+  deletedAt       String?  @map("deleted_at") @db.Text
+  createdBy       Json?    @map("created_by")
+  updatedBy       Json?    @map("updated_by")
+  deletedBy       Json?    @map("deleted_by")
+
+  // AnimalFeed AnimalFeed[]
+  // AnimalFeed    AnimalFeed[]
+  // LivestockFeed LivestockFeed[]
+
+  @@map("livestocks")
+}
+
+model Supplier {
+  id           BigInt   @id @default(autoincrement())
+  uuid         String   @unique @db.VarChar(50)
+  code         String   @map("code") @db.Text
+  supplierName String   @map("supplier_name") @db.Text
+  createdAt    DateTime @map("created_at") @db.Timestamp
+  updatedAt    DateTime @map("updated_at") @db.Timestamp
+  deletedAt    String?  @map("deleted_at") @db.Text
+  createdBy    Json?    @map("created_by")
+  updatedBy    Json?    @map("updated_by")
+  deletedBy    Json?    @map("deleted_by")
+  // AnimalFeed    AnimalFeed[]
+  // LivestockFeed LivestockFeed[]
+
+  @@map("suppliers")
+}
+
+model AnimalFeed {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  // liveStock   Livestock @relation(fields: [livestockId], references: [uuid])
+  livestockId String? @map("type_of_livestock") @db.VarChar(50)
+
+  // supplier    Supplier @relation(fields: [supplierId], references: [uuid])
+  supplierId String? @db.VarChar(50)
+
+  category    String @map("feed_category") @db.Text
+  code        String @map("feed_code_type") @db.VarChar(50)
+  description String @db.Text
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+  deletedBy Json?    @map("deleted_by")
+  // LivestockFeed LivestockFeed[]
+
+  @@map("animalFeeds")
+}
+
+model PlantingSystem {
+  id          BigInt @id @default(autoincrement())
+  uuid        String @unique @db.VarChar(50)
+  description String
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+  deletedBy Json?    @map("deleted_by")
+  // FarmerProfile          FarmerProfile[]
+  // AgrifoodCompanyProfile AgrifoodCompanyProfile[]
+
+  @@map("plantingSystems")
+}
+
+model FarmingSystem {
+  id          BigInt @id @default(autoincrement())
+  uuid        String @unique @db.VarChar(50)
+  description String
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+  deletedBy Json?    @map("deleted_by")
+  // FarmerProfile          FarmerProfile[]
+  // AgrifoodCompanyProfile AgrifoodCompanyProfile[]
+
+  @@map("farmingSystems")
+}
+
+model SupportType {
+  id       BigInt @id @default(autoincrement())
+  uuid     String @unique @db.VarChar(50)
+  supports String
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+  deletedBy Json?    @map("deleted_by")
+  // FarmerProfile FarmerProfile[]
+
+  @@map("typeOfSupports")
+}
+
+model TypeCompanyReg {
+  id             BigInt @id @default(autoincrement())
+  uuid           String @unique @db.VarChar(50)
+  typesOfCompany String
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+  deletedBy Json?    @map("deleted_by")
+  // FarmerProfile          FarmerProfile[]
+  // AgrifoodCompanyProfile AgrifoodCompanyProfile[]
+
+  @@map("typeCompanyRegs")
+}
+
+model Race {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+  race String
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+  deletedBy Json?    @map("deleted_by")
+  // FarmerProfile          FarmerProfile[]
+  // AgrifoodCompanyProfile AgrifoodCompanyProfile[]
+
+  @@map("races")
+}
+
+model FarmerProfile {
+  id         BigInt @id @default(autoincrement())
+  uuid       String @unique @db.VarChar(50)
+  farmerName String @map("farmer_name")
+  otherName  String @map("other_name") @db.Text
+
+  companyId         String?  @map("company_id")
+  farmerCompanyName String   @map("company_name")
+  companyRegNo      String?  @map("company_reg_no")
+  companyRegDate    DateTime @map("company_reg_date")
+  rocbnRegNo        String   @map("ROCBN_reg_no") @db.VarChar(255)
+  companyAddress    String   @map("company_address") @db.Text()
+  mailingAddress    String?  @map("mailing_address")
+
+  //##### Has Relation #####
+  // position     Position? @relation(fields: [positionUUID], references: [uuid])
+  positionUUID String? @map("position_uuid")
+  positionName String? @map("position_name")
+  //#########################
+
+  managerName String? @map("manager_name")
+
+  icPassportNo String @map("IC_Passport_No") @db.VarChar(255)
+  icColour     String @map("IC_Colour") @db.VarChar(255)
+
+  dateOfBirth DateTime @map("DateOfBirth")
+
+  premiseAddress String? @map("premise_address")
+  socialMediaAcc String? @map("social_media_acc")
+  smeCategory    String? @map("SME_category")
+
+  mobileNo       String? @map("mobile_no")
+  telephoneNo    String? @map("tel_no")
+  gender         String? @map("Gender") @db.VarChar(255)
+  emailAddress   String? @map("email_address") @db.Text
+  directorOthers String? @map("director_others")
+
+  //###### Has Relation #####//
+  // companyStatus        CompanyStatus @relation(fields: [companyStatusId], references: [uuid])
+  companyStatusId      String? @map("company_status_uuid") @db.VarChar(50)
+  companyStatusName    String? @map("company_status_name")
+  //############################
+  noOfLabourTotal      Int     @map("no_of_labour_total")
+  unskilledLocal       Int     @map("unskilled_local")
+  semiSkilledLocal     Int     @map("semi_skilled_local")
+  skilledLocal         Int     @map("skilled_local")
+  expertLocal          Int     @map("expert_local")
+  noOfLabourForeigner  Int     @map("no_of_labour_foreigner")
+  unskilledForeigner   Int     @map("unskilled_foreigner")
+  semiSkilledForeigner Int     @map("semi_skilled_foreigner")
+  skilledForeigner     Int     @map("skilledForeigner")
+  expertForeigner      Int     @map("expert_foreigner")
+
+  //###### Has Relation ##########//
+  // currStatus     CurrentStatus @relation(fields: [currStatusId], references: [uuid])
+  currStatusId   String? @map("curr_status_uuid") @db.VarChar(50)
+  currStatusName String? @map("curr_status_name")
+  //###############################//
+
+  //##### Has Relation ########//
+  // plantingSystem     PlantingSystem @relation(fields: [plantingSystemId], references: [uuid])
+  // plantingSystemId   String         @map("planting_system_uuid") @db.VarChar(50)
+  // plantingSystemName String         @map("planting_system_name")
+  supportSystem  Json? @map("support_system")
+  plantingSystem Json? @map("planting_system")
+  //################//
+
+  //##### Has Relation ########//
+  // typeOfSupport   SupportType @relation(fields: [typeOfSupportId], references: [uuid])
+  typeOfSupportId String? @map("type_of_support_uuid") @db.VarChar(50)
+  supportName     String? @map("support_name")
+  //###########################//
+
+  //##### Has Relation ########//
+  // farmingSystem     FarmingSystem @relation(fields: [farmingSystemId], references: [uuid])
+  // farmingSystemId   String        @map("farming_system_uuid") @db.VarChar(50)
+  // farmingSystemName String        @map("farming_system_name")
+
+  farmingSystem Json? @map("farming_system")
+  //##### Farming System ######//
+
+  //##### Has Relation ########//
+  // race     Race   @relation(fields: [raceId], references: [uuid])
+  raceId   String? @map("race_uuid") @db.VarChar(50)
+  raceName String? @map("race_name")
+  //##### Race ######//
+
+  //##### Has Relation ########//
+  // typeCompanyReg     TypeCompanyReg @relation(fields: [typeCompanyRegId], references: [uuid])
+  typeCompanyRegId   String? @map("type_company_reg_uuid") @db.VarChar(50)
+  typeCompanyRegName String? @map("type_company_reg_name")
+  //##### Race ######//
+
+  uploadFile String? @map("upload_file")
+  remarks    String? @map("remarks")
+
+  totalAnnualRevenue Float? @map("total_annual_revenue")
+  totalAssets        Float? @map("total_assets")
+
+  createdAt DateTime? @map("created_at")
+  updatedAt DateTime? @map("updated_at")
+  deletedAt String?   @map("deleted_at") @db.Text
+  createdBy Json?     @map("created_by")
+  updatedBy Json?     @map("updated_by")
+  deletedBy Json?     @map("deleted_by")
+  // PoultryHouse             PoultryHouse[]
+  // RuminantPens             RuminantPens[]
+  // RuminantStock            RuminantStock[]
+  // Machinery                Machinery?                 @relation(fields: [machineryId], references: [id])
+  // machineryId              BigInt?
+  // CompanyProfile           CompanyProfile?            @relation(fields: [companyProfileId], references: [id])
+  // companyProfileId         BigInt?
+  // RuminantProduction       RuminantProduction[]
+  // Broiler                  Broiler[]
+  // TableEgg                 TableEgg[]
+  // DayOldChick              DayOldChick[]
+  // FarmProfile              FarmProfile[]
+  // PlantingSystem           PlantingSystem?            @relation(fields: [plantingSystemId], references: [id])
+  // plantingSystemId         BigInt?
+  // FarmingSystem            FarmingSystem?             @relation(fields: [farmingSystemId], references: [id])
+  // farmingSystemId          BigInt?
+  // FertilizedEgg            FertilizedEgg[]
+  // MiscellaneousLivestock   MiscellaneousLivestock[]
+  // LivestockFeed            LivestockFeed[]
+  // VegetableProduction      VegetableProduction[]
+  // FruitProductionActual    FruitProductionActual[]
+  // FruitProductionEstimated FruitProductionEstimated[]
+
+  @@map("farmerProfiles")
+}
+
+model FarmProfile {
+  id     BigInt  @id @default(autoincrement())
+  uuid   String  @unique @db.VarChar(50)
+  farmId String? @map("farm_id")
+  // farmerProfile FarmerProfile @relation(fields: [farmerUUID], references: [uuid])
+
+  farmerUUID        String  @map("farmer_profile_uuid") @db.VarChar(50)
+  farmerCompanyName String  @map("company_name")
+  farmerCompanyId   String  @map("company_id")
+  ocbsRefNo         String? @map("OCBS_Ref_no")
+  farmerName        String? @map("farmer_name")
+  otherFarmerName   String? @map("other_farmer_name") @db.Text
+  partnerInvestor   String? @map("partner_inv")
+  address           String? @map("farmer_address")
+
+  addresses Json? @map("addresses")
+
+  // farmLocation     FarmLocation @relation(fields: [farmLocationUUID], references: [uuid])
+  farmLocationUUID String? @map("farm_location_uuid")
+  farmMukim        String? @map("farm_mukim")
+  farmVillage      String? @map("farm_village")
+  farmArea         String? @map("farm_area")
+  farmDistrict     String? @map("farm_district")
+
+  farmCategory     String? @map("farm_category")
+  landApprovalDate String? @map("land_approval_date")
+
+  // ownerShipStatus     LandOwnershipStatus? @relation(fields: [ownerShipStatusUUID], references: [uuid])
+  ownerShipStatusUUID String? @map("land_ownership_status_uuid")
+  ownerShipStatusName String? @map("land_pwnership_status")
+
+  // contractStatus     ContractStatus? @relation(fields: [contractStatusUUID], references: [uuid])
+  contractStatusUUID String? @map("contract_status_uuid")
+  contractStatusName String? @map("contract_status")
+
+  expiryDate       String? @map("land_expiry")
+  farmingStartDate String? @map("farming_start_date")
+  farmSize         Float?  @map("farm_size")
+  plantableArea    Float?  @map("plantable_area")
+
+  // irigationStatus     IrigationStatus? @relation(fields: [irigationStatusUUID], references: [uuid])
+  irigationStatusUUID String? @map("irigation_status_uuid")
+  irigationStatusName String? @map("irigation_status")
+
+  typeOfComodityId Json?   @map("type_of_comodity_id")
+  // awardType        AwardType? @relation(fields: [awardTypeId], references: [uuid])
+  awardTypeId      String? @map("award_type_uuid")
+  awardTypeName    String? @map("award_type")
+
+  operationDate    String? @map("operation_date")
+  modernTechnology String? @map("modern_technology")
+  offersTypes      String? @map("offer_types")
+  companyTerms     String? @map("company_terms")
+  marketingAreas   String? @map("marketing_area")
+  remarks          String? @map("remarks")
+
+  //############################
+  noOfLabourTotal      Int? @map("no_of_labour_total")
+  unskilledLocal       Int? @map("unskilled_local")
+  semiSkilledLocal     Int? @map("semi_skilled_local")
+  skilledLocal         Int? @map("skilled_local")
+  expertLocal          Int? @map("expert_local")
+  noOfLabourForeigner  Int? @map("no_of_labour_foreigner")
+  unskilledForeigner   Int? @map("unskilled_foreigner")
+  semiSkilledForeigner Int? @map("semi_skilled_foreigner")
+  skilledForeigner     Int? @map("skilledForeigner")
+  expertForeigner      Int? @map("expert_foreigner")
+
+  //########## FOR PREMISE PROFILE #########
+  productCategoryIds    Json? @map("product_category_ids")
+  subProductCategoryIds Json? @map("sub_product_category_ids")
+  machineryIds          Json? @map("machinery_ids")
+
+  createdAt         DateTime? @map("created_at")
+  updatedAt         DateTime? @map("updated_at")
+  deletedAt         String?   @map("deleted_at") @db.Text
+  createdBy         Json?     @map("created_by")
+  updatedBy         Json?     @map("updated_by")
+  deletedBy         Json?     @map("deleted_by")
+  irigationStatusId BigInt?
+  // PoultryHouse             PoultryHouse[]
+  // RuminantPens             RuminantPens[]
+  // RuminantStock            RuminantStock[]
+  // RuminantProduction       RuminantProduction[]
+  // Broiler                  Broiler[]
+  // DayOldChick              DayOldChick[]
+  // TableEgg                 TableEgg[]
+  // FertilizedEgg            FertilizedEgg[]
+  // MiscellaneousLivestock   MiscellaneousLivestock[]
+  // AgrifoodCompanyProfile   AgrifoodCompanyProfile?    @relation(fields: [agrifoodCompanyProfileId], references: [id])
+  // agrifoodCompanyProfileId BigInt?
+  // VegetableProduction      VegetableProduction[]
+  // FruitProductionActual    FruitProductionActual[]
+  // FruitProductionEstimated FruitProductionEstimated[]
+
+  @@map("farmProfiles")
+}
+
+model CompanyProfile {
+  id             BigInt   @id @default(autoincrement())
+  uuid           String   @unique @db.VarChar(50)
+  name           String   @map("company_name") @db.Text
+  fileNumber     BigInt   @map("fileNumber")
+  typeOfComReg   String   @map("type_com_reg") @db.VarChar(255)
+  companyRegNo   String?  @map("company_reg_no")
+  companyRegDate DateTime @map("company_reg_date")
+  rocbnRegNo     String   @map("ROCBN_reg_no") @db.VarChar(255)
+  companyAddress String   @map("company_address") @db.Text
+  mailingAddress String?  @map("mailing_address")
+  premiseAddress String?  @map("premise_address")
+  socialMediaAcc String?  @map("social_media_acc")
+  smeCategory    String?  @map("SME_category")
+  managerName    String   @map("Manager_name") @db.Text
+
+  //#### Has Relation ######
+  // position     Position? @relation(fields: [positionUUID], references: [uuid])
+  positionUUID String? @map("position_uuid")
+  positionName String? @map("position_name")
+  //########################
+
+  dateOfBirth    DateTime @map("DateOfBirth")
+  icPassportNo   String   @map("IC_Passport_No") @db.VarChar(255)
+  icColour       String   @map("IC_Colour") @db.VarChar(255)
+  mobileNo       BigInt?  @map("mobile_no")
+  telephoneNo    BigInt?  @map("tel_no")
+  race           String?  @map("Race") @db.Text
+  gender         String?  @map("Gender") @db.VarChar(255)
+  emailAddress   String?  @map("email_address") @db.Text
+  directorOthers String?  @map("director_others")
+
+  //###### Has Relation #####//
+  // companyStatus        CompanyStatus @relation(fields: [companyStatusId], references: [uuid])
+  companyStatusId      String? @map("company_status_uuid") @db.VarChar(50)
+  //############################
+  noOfLabourTotal      Int?    @map("no_of_labour_total")
+  unskilledLocal       Int?    @map("unskilled_local")
+  semiSkilledLocal     Int?    @map("semi_skilled_local")
+  skilledLocal         Int?    @map("skilled_local")
+  expertLocal          Int?    @map("expert_local")
+  noOfLabourForeigner  Int?    @map("no_of_labour_foreigner")
+  unskilledForeigner   Int?    @map("unskilled_foreigner")
+  semiSkilledForeigner Int?    @map("semi_skilled_foreigner")
+  skilledForeigner     Int?    @map("skilledForeigner")
+  expertForeigner      Int?    @map("expert_foreigner")
+
+  //###### Has Relation ##########//
+  // typeOfMachinery  Machinery @relation(fields: [typeOfMachinerId], references: [uuid])
+  typeOfMachinerId String? @map("type_of_machinery_id")
+  //###############################//
+
+  suppProgTraining String? @map("supp_prog_training")
+
+  //###### Has Relation ##########//
+  // currStatus   CurrentStatus @relation(fields: [currStatusId], references: [uuid])
+  currStatusId String? @map("curr_status_uuid") @db.VarChar(50)
+  //###############################//
+  uploadFile   String? @map("upload_file")
+  remarks      String? @map("remarks")
+
+  createdAt DateTime? @map("created_at")
+  updatedAt DateTime? @map("updated_at")
+  deletedAt String?   @map("deleted_at") @db.Text
+  createdBy Json?     @map("created_by")
+  updatedBy Json?     @map("updated_by")
+  deletedBy Json?     @map("deleted_by")
+  // PoultryHouse           PoultryHouse[]
+  // RuminantPens           RuminantPens[]
+  // RuminantStock          RuminantStock[]
+  // FarmerProfile          FarmerProfile[]
+  // AgrifoodCompanyProfile AgrifoodCompanyProfile[]
+
+  @@map("companyProfiles")
+}
+
+model CompanyStatus {
+  id               BigInt    @id @default(autoincrement())
+  uuid             String    @unique @db.VarChar(50)
+  description      String    @db.Text
+  descriptionMalay String    @map("description_malay") @db.Text
+  createdAt        DateTime? @map("created_at")
+  updatedAt        DateTime? @map("updated_at")
+  deletedAt        String?   @map("deleted_at") @db.Text
+  createdBy        Json?     @map("created_by")
+  updatedBy        Json?     @map("updated_by")
+  deletedBy        Json?     @map("deleted_by")
+  // FarmerProfile          FarmerProfile[]
+  // CompanyProfile         CompanyProfile[]
+  // AgrifoodCompanyProfile AgrifoodCompanyProfile[]
+
+  @@map("companyStatuses")
+}
+
+model CurrentStatus {
+  id     BigInt @id @default(autoincrement())
+  uuid   String @unique @db.VarChar(50)
+  status String @db.Text
+
+  createdAt DateTime? @map("created_at")
+  updatedAt DateTime? @map("updated_at")
+  deletedAt String?   @map("deleted_at") @db.Text
+  createdBy Json?     @map("created_by")
+  updatedBy Json?     @map("updated_by")
+  deletedBy Json?     @map("deleted_by")
+  // FarmerProfile          FarmerProfile[]
+  // CompanyProfile         CompanyProfile[]
+  // AgrifoodCompanyProfile AgrifoodCompanyProfile[]
+
+  @@map("currentStatuses")
+}
+
+model Machinery {
+  id              BigInt  @id @default(autoincrement())
+  uuid            String  @unique @db.VarChar(50)
+  machineId       String? @map("machine_id")
+  machineType     String  @map("machine_type")
+  machineName     String  @map("machine_name")
+  machineCapacity String  @map("machine_capacity") @db.VarChar(255)
+
+  createdAt DateTime? @map("created_at")
+  updatedAt DateTime? @map("updated_at")
+  deletedAt String?   @map("deleted_at") @db.Text
+  createdBy Json?     @map("created_by")
+  updatedBy Json?     @map("updated_by")
+  deletedBy Json?     @map("deleted_by")
+  // FarmerProfile          FarmerProfile[]
+  // CompanyProfile         CompanyProfile[]
+  // AgrifoodCompanyProfile AgrifoodCompanyProfile[]
+
+  @@map("machineries")
+}
+
+model FarmLocation {
+  id           BigInt  @id @default(autoincrement())
+  uuid         String  @unique @db.VarChar(50)
+  farmName     String? @map("farm_name")
+  farmCategory String? @map("farm_category")
+  district     String  @map("district")
+  mukim        String  @map("mukim")
+  village      String  @map("village")
+  area         String? @map("area")
+
+  createdAt DateTime? @map("created_at")
+  updatedAt DateTime? @map("updated_at")
+  deletedAt String?   @map("deleted_at") @db.Text
+  createdBy Json?     @map("created_by")
+  updatedBy Json?     @map("updated_by")
+  deletedBy Json?     @map("deleted_by")
+  // PoultryHouse           PoultryHouse[]
+  // RuminantPens           RuminantPens[]
+  // RuminantStock          RuminantStock[]
+  // RuminantProduction     RuminantProduction[]
+  // Broiler                Broiler[]
+  // TableEgg               TableEgg[]
+  // DayOldChick            DayOldChick[]
+  // FarmProfile            FarmProfile[]
+  // AgrifoodPremiseProfile AgrifoodPremiseProfile[]
+  // RetailPrice            RetailPrice[]
+
+  @@map("farmLocations")
+}
+
+model PoultryHouse {
+  id                BigInt  @id @default(autoincrement())
+  uuid              String  @unique @db.VarChar(50)
+  // farmerProfile     FarmerProfile @relation(fields: [farmerUUID], references: [uuid])
+  farmerCompanyName String? @map("company_name")
+  farmerUUID        String? @db.VarChar(50)
+
+  // farmArea        FarmProfile @relation(fields: [farmAreaId], references: [uuid])
+  farmAreaId      String? @map("farm_area_uuid")
+  farmProfileArea String? @map("farm_area")
+
+  houseNo       String  @map("house_no") @db.VarChar(64)
+  houseType     String  @map("house_type") @db.VarChar(255)
+  houseSystem   String  @map("house_system") @db.VarChar(255)
+  houseCapacity Int     @map("house_capacity")
+  address       String? @db.Text
+
+  createdAt DateTime? @map("created_at")
+  updatedAt DateTime? @map("updated_at")
+  deletedAt String?   @map("deleted_at") @db.Text
+  createdBy Json?     @map("created_by")
+  updatedBy Json?     @map("updated_by")
+  deletedBy Json?     @map("deleted_by")
+  // CompanyProfile           CompanyProfile?         @relation(fields: [companyProfileId], references: [id])
+  // companyProfileId         BigInt?
+  // Broiler                  Broiler[]
+  // FarmLocation             FarmLocation?           @relation(fields: [farmLocationId], references: [id])
+  // farmLocationId           BigInt?
+  // AgrifoodCompanyProfile   AgrifoodCompanyProfile? @relation(fields: [agrifoodCompanyProfileId], references: [id])
+  // agrifoodCompanyProfileId BigInt?
+
+  @@map("poultryHouses")
+}
+
+model RuminantPens {
+  id                BigInt @id @default(autoincrement())
+  uuid              String @unique @db.VarChar(50)
+  // farmerProfile     FarmerProfile @relation(fields: [farmerUUID], references: [uuid])
+  farmerCompanyName String @map("company_name")
+  farmerUUID        String @db.VarChar(50)
+  // farmArea          FarmProfile   @relation(fields: [farmAreaId], references: [uuid])
+  farmAreaId        String @map("farm_area_uuid")
+  farmProfileArea   String @map("farm_area")
+  pensNo            String @map("pens_no") @db.VarChar(64)
+  pensSystem        String @map("pens_system") @db.VarChar(255)
+  pensCapacity      Int    @map("pens_capacity")
+
+  createdAt DateTime? @map("created_at")
+  updatedAt DateTime? @map("updated_at")
+  deletedAt String?   @map("deleted_at") @db.Text
+  createdBy Json?     @map("created_by")
+  updatedBy Json?     @map("updated_by")
+  deletedBy Json?     @map("deleted_by")
+  // CompanyProfile           CompanyProfile?         @relation(fields: [companyProfileId], references: [id])
+  // companyProfileId         BigInt?
+  // FarmLocation             FarmLocation?           @relation(fields: [farmLocationId], references: [id])
+  // farmLocationId           BigInt?
+  // AgrifoodCompanyProfile   AgrifoodCompanyProfile? @relation(fields: [agrifoodCompanyProfileId], references: [id])
+  // agrifoodCompanyProfileId BigInt?
+
+  @@map("ruminantPenses")
+}
+
+model RuminantStock {
+  id                BigInt  @id @default(autoincrement())
+  uuid              String  @unique @db.VarChar(50)
+  date              String?
+  // farmerProfile     FarmerProfile @relation(fields: [farmerUUID], references: [uuid])
+  farmerCompanyName String  @map("company_name")
+  farmerUUID        String  @db.VarChar(50)
+
+  // farmArea        FarmProfile @relation(fields: [farmAreaId], references: [uuid])
+  farmAreaId      String @map("farm_area_uuid")
+  farmProfileArea String @map("farm_area")
+
+  district String @map("district")
+
+  stockMaleKerbau  Int? @map("stock_male_kerbau")
+  stockMaleLembu   Int? @map("stock_male_lembu")
+  stockMaleBiri    Int? @map("stock_male_biri")
+  stockMaleRusa    Int? @map("stock_male_rusa")
+  stockMaleKambing Int? @map("stock_male_kambing")
+
+  stockFemaleKerbau  Int? @map("stock_female_kerbau")
+  stockFemaleLembu   Int? @map("stock_female_lembu")
+  stockFemaleBiri    Int? @map("stock_female_biri")
+  stockFemaleRusa    Int? @map("stock_female_rusa")
+  stockFemaleKambing Int? @map("stock_female_kambing")
+
+  total Int? @map("total")
+
+  createdAt DateTime? @map("created_at")
+  updatedAt DateTime? @map("updated_at")
+  deletedAt String?   @map("deleted_at") @db.Text
+  createdBy Json?     @map("created_by")
+  updatedBy Json?     @map("updated_by")
+  deletedBy Json?     @map("deleted_by")
+  // CompanyProfile           CompanyProfile?         @relation(fields: [companyProfileId], references: [id])
+  // companyProfileId         BigInt?
+  // FarmLocation             FarmLocation?           @relation(fields: [farmLocationId], references: [id])
+  // farmLocationId           BigInt?
+  // AgrifoodCompanyProfile   AgrifoodCompanyProfile? @relation(fields: [agrifoodCompanyProfileId], references: [id])
+  // agrifoodCompanyProfileId BigInt?
+
+  @@map("ruminantStocks")
+}
+
+model User {
+  id              Int     @id @default(autoincrement())
+  uuid            String  @unique @db.VarChar(50)
+  username        String? @map("username") @db.VarChar(50)
+  password        String?
+  defaultPassword String?
+  status          String?
+
+  name String? @map("name")
+  icNo String? @map("ic_no")
+
+  doaaRegNo  String? @map("doaa_reg_no")
+  rocbnRegNo String? @map("rocbn_reg_no")
+
+  email String? @map("email")
+  phone String? @map("phone")
+
+  controlPost String? @map("control_post")
+  district    String? @map("district")
+
+  userRoleId String? @map("role_uuid")
+
+  registerType                     String?  @map("register_type")
+  isUserBioSecurityEnforcementOnly Boolean? @map("is_enforcement_only")
+
+  loginStatus String? @map("login_status")
+
+  loginAttemptCount Int?    @map("login_attempt")
+  unit              String? @map("unit")
+
+  createdAt DateTime? @map("created_at")
+  updatedAt DateTime? @map("updated_at")
+  deletedAt String?   @map("deleted_at") @db.Text
+  createdBy Json?     @map("created_by")
+  updatedBy Json?     @map("updated_by")
+  deletedBy Json?     @map("deleted_by")
+
+  @@map("users")
+}
+
+model FarmerRegisterForm {
+  id   Int    @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  name String? @map("name")
+  icNo String? @map("ic_no")
+
+  password        String? @map("password")
+  defaultPassword String? @map("default_password")
+
+  doaaRegNo  String? @map("doaa_reg_no")
+  rocbnRegNo String? @map("rocbn_reg_no")
+
+  email String? @map("email")
+  phone String? @map("phone")
+
+  status String? @map("status")
+
+  createdAt DateTime? @map("created_at")
+  updatedAt DateTime? @map("updated_at")
+  deletedAt String?   @map("deleted_at") @db.Text
+  createdBy Json?     @map("created_by")
+  updatedBy Json?     @map("updated_by")
+  deletedBy Json?     @map("deleted_by")
+
+  @@map("farmerRegisterForms")
+}
+
+model UserRoles {
+  id         Int    @id @default(autoincrement())
+  uuid       String @unique @db.VarChar(50)
+  name       String
+  privileges Json?
+
+  createdAt DateTime? @map("created_at")
+  updatedAt DateTime? @map("updated_at")
+  deletedAt String?   @map("deleted_at") @db.Text
+  createdBy Json?     @map("created_by")
+  updatedBy Json?     @map("updated_by")
+  deletedBy Json?     @map("deleted_by")
+
+  @@map("userRoles")
+}
+
+model UserSession {
+  id         Int    @id @default(autoincrement())
+  uuid       String @unique @db.VarChar(50)
+  userId     String
+  employeeId String
+  expiresIn  String
+  token      String @db.VarChar(1000)
+
+  createdAt   DateTime? @map("created_at")
+  updatedAt   DateTime? @map("updated_at")
+  lastLoginAt DateTime? @map("last_login_at")
+
+  @@map("userSessions")
+}
+
+model RuminantProduction {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  date              String?
+  // farmerProfile     FarmerProfile @relation(fields: [farmerUUID], references: [uuid])
+  farmerCompanyName String  @map("company_name")
+  farmerUUID        String  @db.VarChar(50)
+  // farmArea          FarmProfile   @relation(fields: [farmAreaId], references: [uuid])
+  farmAreaId        String  @map("farm_area_uuid")
+  farmProfileArea   String  @map("farm_area")
+
+  district String @map("district")
+
+  kerbauLocalJual      Int? @map("kerbau_jual")
+  kerbauLocalSembelih  Int? @map("kerbau_sembelih")
+  kerbauLocalQurban    Int? @map("kerbau_qurban")
+  kerbauImportJual     Int? @map("import_kerbau_jual")
+  kerbauImportSembelih Int? @map("import_kerbau_sembelih")
+  kerbauImportQurban   Int? @map("import_kerbau_qurban")
+
+  lembuLocalJual      Int? @map("lembu_jual")
+  lembuLocalSembelih  Int? @map("lembu_sembelih")
+  lembuLocalQurban    Int? @map("lembu_qurban")
+  lembuImportJual     Int? @map("import_lembu_jual")
+  lembuImportSembelih Int? @map("import_lembu_sembelih")
+  lembuImportQurban   Int? @map("import_lembu_qurban")
+
+  biriLocalJual      Int? @map("biri_jual")
+  biriLocalSembelih  Int? @map("biri_sembelih")
+  biriLocalQurban    Int? @map("biri_qurban")
+  biriImportJual     Int? @map("import_biri_jual")
+  biriImportSembelih Int? @map("import_biri_sembelih")
+  biriImportQurban   Int? @map("import_biri_qurban")
+
+  rusaLocalJual      Int? @map("rusa_jual")
+  rusaLocalSembelih  Int? @map("rusa_sembelih")
+  rusaLocalQurban    Int? @map("rusa_qurban")
+  rusaImportJual     Int? @map("import_rusa_jual")
+  rusaImportSembelih Int? @map("import_rusa_sembelih")
+  rusaImportQurban   Int? @map("import_rusa_qurban")
+
+  kambingLocalJual      Int? @map("kambing_jual")
+  kambingLocalSembelih  Int? @map("kambing_sembelih")
+  kambingLocalQurban    Int? @map("kambing_qurban")
+  kambingImportJual     Int? @map("import_kambing_jual")
+  kambingImportSembelih Int? @map("import_kambing_sembelih")
+  kambingImportQurban   Int? @map("import_kambing_qurban")
+
+  total Int? @map("total")
+
+  createdAt DateTime? @map("created_at")
+  updatedAt DateTime? @map("updated_at")
+  deletedAt String?   @map("deleted_at") @db.Text
+  createdBy Json?     @map("created_by")
+  updatedBy Json?     @map("updated_by")
+  deletedBy Json?     @map("deleted_by")
+  // FarmLocation             FarmLocation?           @relation(fields: [farmLocationId], references: [id])
+  // farmLocationId           BigInt?
+  // AgrifoodCompanyProfile   AgrifoodCompanyProfile? @relation(fields: [agrifoodCompanyProfileId], references: [id])
+  // agrifoodCompanyProfileId BigInt?
+
+  @@map("ruminantProductions")
+}
+
+model Broiler {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  // farmerProfile     FarmerProfile @relation(fields: [farmerUUID], references: [uuid])
+  farmerCompanyName String @map("company_name")
+  farmerUUID        String @db.VarChar(50)
+  // farmArea        FarmProfile @relation(fields: [farmAreaId], references: [uuid])
+  farmAreaId        String @map("farm_area_uuid")
+  farmProfileArea   String @map("farm_area")
+
+  poultryHouseId String  @map("poultry_house_uuid") @db.VarChar(50)
+  // poultryHouse   PoultryHouse @relation(fields: [poultryHouseId], references: [uuid])
+  poultryHouseNo String  @map("house_no") @db.VarChar(64)
+  address        String? @db.Text
+
+  cycleNo      Int?     @map("cycle_no")
+  dateEntry    DateTime @map("date_entry")
+  noDocEntry   String?  @map("no_doc_entry")
+  docSource    String   @map("doc_source")
+  chickenBreed String?  @map("chicken_breed")
+  feedSource   String?  @map("feed_source")
+
+  mortalityObject Json?     @map("mortality_ages")
+  productionDate  DateTime? @map("production_date")
+
+  total      Int?    @map("total")
+  production Int?    @map("production")
+  remark     String? @map("remark")
+
+  createdAt DateTime? @map("created_at")
+  updatedAt DateTime? @map("updated_at")
+  deletedAt String?   @map("deleted_at") @db.Text
+  createdBy Json?     @map("created_by")
+  updatedBy Json?     @map("updated_by")
+  deletedBy Json?     @map("deleted_by")
+  // FarmLocation             FarmLocation?           @relation(fields: [farmLocationId], references: [id])
+  // farmLocationId           BigInt?
+  // AgrifoodCompanyProfile   AgrifoodCompanyProfile? @relation(fields: [agrifoodCompanyProfileId], references: [id])
+  // agrifoodCompanyProfileId BigInt?
+
+  @@map("broilers")
+}
+
+model TableEgg {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+  date String @map("date")
+
+  // farmerProfile     FarmerProfile @relation(fields: [farmerUUID], references: [uuid])
+  farmerCompanyName String @map("company_name")
+  farmerUUID        String @db.VarChar(50)
+
+  // farmArea        FarmProfile @relation(fields: [farmAreaId], references: [uuid])
+  farmAreaId      String @map("farm_area_uuid")
+  farmProfileArea String @map("farm_area")
+
+  typeOfBreed    Json?   @map("type_of_breed")
+  feedSource     String? @map("feed_source")
+  totalNoOfLayer Int     @map("total_no_of_layer")
+  totalEggs      Int     @map("total_eggs")
+  remark         String? @map("remark")
+
+  createdAt DateTime? @map("created_at")
+  updatedAt DateTime? @map("updated_at")
+  deletedAt String?   @map("deleted_at") @db.Text
+  createdBy Json?     @map("created_by")
+  updatedBy Json?     @map("updated_by")
+  deletedBy Json?     @map("deleted_by")
+  // FarmLocation             FarmLocation?           @relation(fields: [farmLocationId], references: [id])
+  // farmLocationId           BigInt?
+  // AgrifoodCompanyProfile   AgrifoodCompanyProfile? @relation(fields: [agrifoodCompanyProfileId], references: [id])
+  // agrifoodCompanyProfileId BigInt?
+
+  @@map("tableEggs")
+}
+
+model DayOldChick {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+  date String @map("date")
+
+  // farmerProfile     FarmerProfile @relation(fields: [farmerUUID], references: [uuid])
+  farmerCompanyName String @map("company_name")
+  farmerUUID        String @db.VarChar(50)
+
+  // farmArea        FarmProfile @relation(fields: [farmAreaId], references: [uuid])
+  farmAreaId      String @map("farm_area_uuid")
+  farmProfileArea String @map("farm_area")
+
+  totalGolden            Int @map("total_golden")
+  totalIdeal             Int @map("total_ideal")
+  totalImports           Int @map("total_imports")
+  incubatedFertilizedEgg Int @map("incubated_fertillized_egg")
+  docProduced            Int @map("doc_produced")
+
+  createdAt DateTime? @map("created_at")
+  updatedAt DateTime? @map("updated_at")
+  deletedAt String?   @map("deleted_at") @db.Text
+  createdBy Json?     @map("created_by")
+  updatedBy Json?     @map("updated_by")
+  deletedBy Json?     @map("deleted_by")
+  // FarmLocation             FarmLocation?           @relation(fields: [farmLocationId], references: [id])
+  // farmLocationId           BigInt?
+  // AgrifoodCompanyProfile   AgrifoodCompanyProfile? @relation(fields: [agrifoodCompanyProfileId], references: [id])
+  // agrifoodCompanyProfileId BigInt?
+
+  @@map("dayOldChicks")
+}
+
+model TypeOfComodity {
+  id           BigInt @id @default(autoincrement())
+  uuid         String @unique @db.VarChar(50)
+  comodityType String @map("comodity_type")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+  deletedBy Json?    @map("deleted_by")
+
+  @@map("typeOfComodities")
+}
+
+model LandOwnershipStatus {
+  id     BigInt @id @default(autoincrement())
+  uuid   String @unique @db.VarChar(50)
+  status String @map("status")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+  deletedBy Json?    @map("deleted_by")
+  // FarmProfile FarmProfile[]
+
+  @@map("landOwnwershipStatuses")
+}
+
+model IrigationStatus {
+  id     BigInt @id @default(autoincrement())
+  uuid   String @unique @db.VarChar(50)
+  status String @map("status")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+  deletedBy Json?    @map("deleted_by")
+  // FarmProfile FarmProfile[]
+
+  @@map("irigationStatuses")
+}
+
+model ContractStatus {
+  id     BigInt @id @default(autoincrement())
+  uuid   String @unique @db.VarChar(50)
+  status String @map("status")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+  deletedBy Json?    @map("deleted_by")
+  // FarmProfile            FarmProfile[]
+  // AgrifoodPremiseProfile AgrifoodPremiseProfile[]
+
+  @@map("contractStatuses")
+}
+
+model AwardType {
+  id    BigInt @id @default(autoincrement())
+  uuid  String @unique @db.VarChar(50)
+  award String @map("award")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+  deletedBy Json?    @map("deleted_by")
+  // FarmProfile            FarmProfile[]
+  // AgrifoodPremiseProfile AgrifoodPremiseProfile[]
+
+  @@map("awardTypes")
+}
+
+model FertilizedEgg {
+  id        BigInt @id @default(autoincrement())
+  uuid      String @unique @db.VarChar(50)
+  monthYear String @map("monthYear")
+
+  // farmerProfile     FarmerProfile @relation(fields: [farmerUUID], references: [uuid])
+  farmerCompanyName String @map("company_name")
+  farmerUUID        String @db.VarChar(50)
+
+  // farmArea        FarmProfile @relation(fields: [farmAreaId], references: [uuid])
+  farmAreaId      String @map("farm_area_uuid")
+  farmProfileArea String @map("farm_area")
+
+  noOfBreeder        Int? @map("no_of_breeder")
+  noOfFertilizedEggs Int? @map("no_of_fertilized_eggs")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+  deletedBy Json?    @map("deleted_by")
+  // AgrifoodCompanyProfile   AgrifoodCompanyProfile? @relation(fields: [agrifoodCompanyProfileId], references: [id])
+  // agrifoodCompanyProfileId BigInt?
+
+  @@map("fertilizedEggs")
+}
+
+model MiscellaneousLivestock {
+  id        BigInt @id @default(autoincrement())
+  uuid      String @unique @db.VarChar(50)
+  monthYear String @map("monthYear")
+
+  // farmerProfile     FarmerProfile @relation(fields: [farmerUUID], references: [uuid])
+  farmerCompanyName String @map("company_name")
+  farmerUUID        String @db.VarChar(50)
+
+  // farmArea        FarmProfile @relation(fields: [farmAreaId], references: [uuid])
+  farmAreaId      String @map("farm_area_uuid")
+  farmProfileArea String @map("farm_area")
+
+  district String?
+  mukim    String?
+
+  totalAyamKampungBirds Int? @map("total_ayam_kampung_birds")
+  totalAyamKampungEggs  Int? @map("total_ayam_kampung_eggs")
+
+  totalItikBirds Int? @map("total_itik_birds")
+  totalItikEggs  Int? @map("total_itik_eggs")
+
+  totalPuyuhBirds Int? @map("total_puyuh_birds")
+  totalPuyuhEggs  Int? @map("total_puyuh_eggs")
+
+  totalPatuBirds Int? @map("total_patu_birds")
+  totalPatuEggs  Int? @map("total_patu_eggs")
+
+  totalAngsaBirds Int? @map("total_angsa_birds")
+  totalAngsaEggs  Int? @map("total_angsa_eggs")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+  deletedBy Json?    @map("deleted_by")
+  // AgrifoodCompanyProfile   AgrifoodCompanyProfile? @relation(fields: [agrifoodCompanyProfileId], references: [id])
+  // agrifoodCompanyProfileId BigInt?
+
+  @@map("miscellaneousLivestock")
+}
+
+model RetailPrice {
+  id        BigInt @id @default(autoincrement())
+  uuid      String @unique @db.VarChar(50)
+  monthYear String @map("monthYear")
+
+  // farmLocation     FarmLocation? @relation(fields: [farmLocationUUID], references: [uuid])
+  // farmLocationUUID String?       @map("farm_location_uuid")
+
+  // item        String?
+  // district    String? @map("district")
+  livestockCommodityUUID       String? @map("livestock_commodity_uuid")
+  livestockCommodityDetailUUID String? @map("livestock_commodity_detail_uuid")
+  code                         String?
+  description                  String?
+  price                        Int?
+
+  bruneiMuaraPrice Float? @map("brunei_muara_price")
+  tutongPrice      Float? @map("tutong_price")
+  belaitPrice      Float? @map("belait_price")
+  temburongPrice   Float? @map("temburong")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+  deletedBy Json?    @map("deleted_by")
+  // FarmLocation   FarmLocation? @relation(fields: [farmLocationId], references: [id])
+  // farmLocationId BigInt?
+
+  @@map("retailPrices")
+}
+
+model Test {
+  id       BigInt @id @default(autoincrement())
+  uuid     String @unique @db.VarChar(50)
+  testId   String @map("test_id")
+  testName String @map("test_name")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+  deletedBy Json?    @map("deleted_by")
+
+  @@map("tests")
+}
+
+model SefiRentalMachinery {
+  id          BigInt @id @default(autoincrement())
+  uuid        String @unique @db.VarChar(50)
+  machineId   String @map("machine_id")
+  machineName String @map("machine_name")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+  deletedBy Json?    @map("deleted_by")
+
+  @@map("sefiRentalMachineries")
+}
+
+model AgrifoodProductCategory {
+  id                 BigInt  @id @default(autoincrement())
+  uuid               String  @unique @db.VarChar(50)
+  productNameEnglish String? @map("product_name_english")
+  productNameMalay   String? @map("product_name_malay")
+
+  codePrefix String? @map("code_prefix")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+  deletedBy Json?    @map("deleted_by")
+  // AgrifoodProduct            AgrifoodProduct[]
+  // AgrifoodProductSubCategory AgrifoodProductSubCategory[]
+  // AgrifoodProduction         AgrifoodProduction[]
+  // ProductCatalogue           ProductCatalogue[]
+  // ProductCatalogueDetails    ProductCatalogueDetails[]
+
+  @@map("agrifoodProductCategories")
+}
+
+model AgrifoodProductSubCategory {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  subCategoryId          String? @map("sub_category_id")
+  subCategoryNameEnglish String? @map("sub_category_name_english")
+  subCategoryNameMalay   String? @map("sub_category_name_malay")
+
+  // productCategory            AgrifoodProductCategory? @relation(fields: [productCategoryUUID], references: [uuid])
+  productCategoryUUID        String? @map("product_category_uuid")
+  productCategoryNameEnglish String? @map("product_category_name_english")
+  productCategoryNameMalay   String? @map("product_category_name_malay")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+  deletedBy Json?    @map("deleted_by")
+  // AgrifoodProduct         AgrifoodProduct[]
+  // AgrifoodProduction      AgrifoodProduction[]
+  // ProductCatalogueDetails ProductCatalogueDetails[]
+
+  @@map("agrifoodProductSubCategories")
+}
+
+model AgrifoodProduct {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  productName String @map("product_name")
+
+  // category     AgrifoodProductCategory? @relation(fields: [categoryUUID], references: [uuid])
+  categoryUUID String? @map("category_uuid")
+  categoryName String? @map("category_name")
+
+  // subCategory     AgrifoodProductSubCategory? @relation(fields: [subCategoryUUID], references: [uuid])
+  subCategoryUUID String? @map("sub_category_uuid")
+  subCategoryName String? @map("sub_category")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+  deletedBy Json?    @map("deleted_by")
+
+  @@map("agrifoodProducts")
+}
+
+model LivestockFeed {
+  id           BigInt @id @default(autoincrement())
+  uuid         String @unique @db.VarChar(50)
+  monthYear    String @map("monthYear")
+  // supplier     Supplier @relation(fields: [supplierUUID], references: [uuid])
+  supplierUUID String @map("supplier_uuid") @db.VarChar(50)
+  supplierName String @map("supplier_name")
+
+  //Get From Master Data - Livestock (type of live stock)
+  livestockUUID   String? @map("livestock_uuid")
+  typeOfLiveStock String? @map("type_of_livestock")
+  // livestock       Livestock? @relation(fields: [livestockUUID], references: [uuid])
+
+  //Get From Master Data - Animal Feed (category)
+  livestockFeedCategoryUUID String? @map("livestock_feed_category_uuid")
+  livestockFeedCategory     String? @map("livestock_feed_category")
+  // livestockFeed             AnimalFeed? @relation(fields: [livestockFeedCategoryUUID], references: [uuid])
+
+  livestockFeedCode String? @map("livestock_feed_code")
+
+  //Get From Profiling - Farmer Profile
+  // farmerProfile FarmerProfile? @relation(fields: [customerUUID], references: [uuid])
+  customerUUID String? @map("customer_uuid")
+  customerName String? @map("customer_name")
+
+  quantityKg Float? @map("quantity_kg") @db.Float()
+  quantityMt Float? @map("quantity_mt") @db.Float()
+  price50Kg  Float? @map("price_50kg") @db.Float()
+  priceKg    Float? @map("price_kg") @db.Float()
+  totalValue Float? @map("total_value") @db.Float()
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+  deletedBy Json?    @map("deleted_by")
+  // AgrifoodCompanyProfile   AgrifoodCompanyProfile? @relation(fields: [agrifoodCompanyProfileId], references: [id])
+  // agrifoodCompanyProfileId BigInt?
+
+  @@map("livestockFeeds")
+}
+
+model TypeOfAnalysis {
+  id        BigInt   @id @default(autoincrement())
+  uuid      String   @unique @db.VarChar(50)
+  name      String
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+  deletedBy Json?    @map("deleted_by")
+
+  @@map("typeOfAnalysis")
+}
+
+model AgrifoodCompanyProfile {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  companyId      String?  @map("company_id")
+  companyName    String   @map("company_name")
+  companyRegNo   String?  @map("company_reg_no")
+  companyRegDate DateTime @map("company_reg_date")
+  rocbnRegNo     String   @map("ROCBN_reg_no") @db.VarChar(255)
+  companyAddress String   @map("company_address") @db.Text
+  mailingAddress String?  @map("mailing_address")
+  managerName    String?  @map("manager_name")
+
+  // position     Position? @relation(fields: [positionUUID], references: [uuid])
+  positionUUID String? @map("position_uuid")
+  positionName String? @map("position_name")
+
+  otherMembers   String? @map("other_member")
+  supportMembers String? @map("support_members")
+  machineryIds   Json?   @map("machinery_ids")
+  typeOfAwardIds Json?   @map("type_award_ids")
+
+  icPassportNo String? @map("IC_Passport_No") @db.VarChar(255)
+  icColour     String? @map("IC_Colour") @db.VarChar(255)
+
+  dateOfBirth DateTime @map("DateOfBirth")
+
+  premiseAddress   String? @map("premise_address")
+  premiseStructure String? @map("premise_structure")
+
+  socialMediaAcc String? @map("social_media_acc")
+  smeCategory    String? @map("SME_category")
+
+  mobileNo       String? @map("mobile_no")
+  telephoneNo    String? @map("tel_no")
+  gender         String? @map("Gender") @db.VarChar(255)
+  emailAddress   String? @map("email_address") @db.Text
+  directorOthers String? @map("director_others")
+
+  //###### Has Relation #####//
+  // companyStatus        CompanyStatus @relation(fields: [companyStatusId], references: [uuid])
+  companyStatusId      String @map("company_status_uuid") @db.VarChar(50)
+  companyStatusName    String @map("company_status_name")
+  //############################
+  noOfLabourTotal      Int    @map("no_of_labour_total")
+  unskilledLocal       Int    @map("unskilled_local")
+  semiSkilledLocal     Int    @map("semi_skilled_local")
+  skilledLocal         Int    @map("skilled_local")
+  expertLocal          Int    @map("expert_local")
+  noOfLabourForeigner  Int    @map("no_of_labour_foreigner")
+  unskilledForeigner   Int    @map("unskilled_foreigner")
+  semiSkilledForeigner Int    @map("semi_skilled_foreigner")
+  skilledForeigner     Int    @map("skilledForeigner")
+  expertForeigner      Int    @map("expert_foreigner")
+
+  //###### Has Relation ##########//
+  // currStatus     CurrentStatus @relation(fields: [currStatusId], references: [uuid])
+  currStatusId   String @map("curr_status_uuid") @db.VarChar(50)
+  currStatusName String @map("curr_status_name")
+  //###############################//
+
+  //##### Has Relation ########//
+  // race     Race   @relation(fields: [raceId], references: [uuid])
+  raceId   String @map("race_uuid") @db.VarChar(50)
+  raceName String @map("race_name")
+  //##### Race ######//
+
+  //##### Has Relation ########//
+  // typeCompanyReg     TypeCompanyReg @relation(fields: [typeCompanyRegId], references: [uuid])
+  typeCompanyRegId   String @map("type_company_reg_uuid") @db.VarChar(50)
+  typeCompanyRegName String @map("type_company_reg_name")
+  //##### Race ######//
+
+  uploadFile String? @map("upload_file")
+  remarks    String? @map("remarks")
+
+  totalAssets        Float? @map("total_assets")
+  totalAnnualRevenue Float? @map("total_annual_revenue")
+
+  createdAt DateTime? @map("created_at")
+  updatedAt DateTime? @map("updated_at")
+  deletedAt String?   @map("deleted_at") @db.Text
+  createdBy Json?     @map("created_by")
+  updatedBy Json?     @map("updated_by")
+  deletedBy Json?     @map("deleted_by")
+  // PoultryHouse            PoultryHouse[]
+  // RuminantPens            RuminantPens[]
+  // RuminantStock           RuminantStock[]
+  // Machinery               Machinery?                @relation(fields: [machineryId], references: [id])
+  // machineryId             BigInt?
+  // CompanyProfile          CompanyProfile?           @relation(fields: [companyProfileId], references: [id])
+  // companyProfileId        BigInt?
+  // RuminantProduction      RuminantProduction[]
+  // Broiler                 Broiler[]
+  // TableEgg                TableEgg[]
+  // DayOldChick             DayOldChick[]
+  // FarmProfile             FarmProfile[]
+  // PlantingSystem          PlantingSystem?           @relation(fields: [plantingSystemId], references: [id])
+  // plantingSystemId        BigInt?
+  // FarmingSystem           FarmingSystem?            @relation(fields: [farmingSystemId], references: [id])
+  // farmingSystemId         BigInt?
+  // FertilizedEgg           FertilizedEgg[]
+  // MiscellaneousLivestock  MiscellaneousLivestock[]
+  // LivestockFeed           LivestockFeed[]
+  // AgrifoodPremiseProfile  AgrifoodPremiseProfile[]
+  // AgrifoodProduction      AgrifoodProduction[]
+  // ProductCatalogue        ProductCatalogue[]
+  // ProductCatalogueDetails ProductCatalogueDetails[]
+  // SEFIRental              SEFIRental[]
+  // FoodSampling            FoodSampling[]
+
+  @@map("agrifoodCompanyProfiles")
+}
+
+model AgrifoodPremiseProfile {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  premiseId String? @map("premise_id")
+
+  //#### Relations
+  // agrifoodCompany AgrifoodCompanyProfile? @relation(fields: [companyUUID], references: [uuid])
+  companyUUID String? @map("company_uuid")
+  companyName String? @map("company_name")
+  //#### End Relations
+
+  ocbsRefNo           String? @map("OCBS_Ref_no")
+  partnerInvestor     String? @map("partner_investor")
+  supervisorName      String? @map("supervisor_name")
+  otherSupervisorName String? @map("other_supervisor_name")
+  premiseAddress      String? @map("premise_address")
+  premiseStructure    String? @map("premise_strucuture")
+  premiseSize         Int?    @map("premise_size")
+
+  //### Relations
+  // farmLocation     FarmLocation? @relation(fields: [farmLocationUUID], references: [uuid])
+  farmLocationUUID String? @map("farm_location_uuid")
+  farmMukim        String? @map("farm_mukim")
+  farmVillage      String? @map("farm_village")
+  farmArea         String? @map("farm_area")
+  farmDistrict     String? @map("farm_district")
+  //### End Relations
+
+  farmCategory     String? @map("farm_category")
+  landApprovalDate String? @map("land_approval_date")
+  allowedActivites String? @map("allowed_activites")
+  expiryDate       String? @map("land_expiry")
+
+  //### Relations 
+  // awardType     AwardType? @relation(fields: [awardTypeId], references: [uuid])
+  awardTypeId   String? @map("award_type_uuid")
+  awardTypeName String? @map("award_type")
+  //### End Relations
+
+  //### Relations 
+  // contractStatus     ContractStatus? @relation(fields: [contractStatusUUID], references: [uuid])
+  contractStatusUUID String? @map("contract_status_uuid")
+  contractStatusName String? @map("contract_status")
+  //### End Relations
+
+  commencementDate String? @map("commencement_date")
+  landSize         Int?    @map("land_size")
+  factorySize      Int?    @map("factory_size")
+
+  agrifoodProductCategoryIds    Json? @map("agrifood_product_category_ids")
+  agrifoodProductSubCategoryIds Json? @map("agrifood_product_sub_category_ids")
+  machineryIds                  Json? @map("machinery_ids")
+
+  noOfLabourTotal      Int? @map("no_of_labour_total")
+  unskilledLocal       Int? @map("unskilled_local")
+  semiSkilledLocal     Int? @map("semi_skilled_local")
+  skilledLocal         Int? @map("skilled_local")
+  expertLocal          Int? @map("expert_local")
+  noOfLabourForeigner  Int? @map("no_of_labour_foreigner")
+  unskilledForeigner   Int? @map("unskilled_foreigner")
+  semiSkilledForeigner Int? @map("semi_skilled_foreigner")
+  skilledForeigner     Int? @map("skilledForeigner")
+  expertForeigner      Int? @map("expert_foreigner")
+
+  createdAt DateTime? @map("created_at")
+  updatedAt DateTime? @map("updated_at")
+  deletedAt String?   @map("deleted_at") @db.Text
+  createdBy Json?     @map("created_by")
+  updatedBy Json?     @map("updated_by")
+  deletedBy Json?
+  // AgrifoodProduction AgrifoodProduction[]
+
+  @@map("agrifoodPremisProfiles")
+}
+
+model Position {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  name        String?   @map("position_name")
+  description String?   @map("description")
+  createdAt   DateTime? @map("created_at")
+  updatedAt   DateTime? @map("updated_at")
+  deletedAt   String?   @map("deleted_at") @db.Text
+  createdBy   Json?     @map("created_by")
+  updatedBy   Json?     @map("updated_by")
+  deletedBy   Json?
+  // FarmerProfile          FarmerProfile[]
+  // AgrifoodCompanyProfile AgrifoodCompanyProfile[]
+  // CompanyProfile         CompanyProfile[]
+
+  @@map("positions")
+}
+
+model AgrifoodProduction {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  monthYear String? @map("month_year")
+
+  //### Has Relations #####
+  // agrifoodCompanyProfile AgrifoodCompanyProfile? @relation(fields: [companyUUID], references: [uuid])
+  companyUUID String? @map("company_uuid")
+  companyName String? @map("company_name")
+  //#####
+
+  //### Has Relations #####
+  // agrifoodPremisProfile AgrifoodPremiseProfile? @relation(fields: [premiseUUID], references: [uuid])
+  premiseUUID    String? @map("premise_uuid")
+  premiseAddress String? @map("premise_address") @db.Text
+  //#####
+
+  //### Has Relations #####
+  // agrifoodProductCategory AgrifoodProductCategory? @relation(fields: [productCategoryUUID], references: [uuid])
+  productCategoryUUID String? @map("product_category_uuid")
+  productCategory     String? @map("product_category")
+  //#####
+
+  //### Has Relations #####
+  // agrifoodProductSubCategory AgrifoodProductSubCategory? @relation(fields: [productSubCategoryUUID], references: [uuid])
+  productSubCategoryUUID String? @map("product_sub_category_uuid")
+  productSubCategory     String? @map("product_sub_category")
+  //#####
+
+  //### Has Relations #####
+  // productCatalogueDetailsUUID ProductCatalogueDetails? @relation(fields: [productCatalogueUUID], references: [uuid])
+  productCatalogueUUID String? @map("product_catalogue_uuid")
+  productName          String? @map("product_name")
+  //####
+
+  pricePerUnit       Float? @map("price_per_unit")
+  netWeight          Float? @map("net_weight")
+  actualUnit         Float? @map("actual_unit")
+  quantity           Float? @map("quantity")
+  percentageExported Float? @map("percentage_export")
+  valueProduced      Float? @map("value_produced")
+
+  createdAt DateTime? @map("created_at")
+  updatedAt DateTime? @map("updated_at")
+  deletedAt String?   @map("deleted_at") @db.Text
+  createdBy Json?     @map("created_by")
+  updatedBy Json?     @map("updated_by")
+  deletedBy Json?
+
+  @@map("agrifoodProductions")
+}
+
+model ProductCatalogue {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  code        String? @map("code")
+  //### Has Relations #####
+  // agrifoodCompanyProfile AgrifoodCompanyProfile? @relation(fields: [companyUUID], references: [uuid])
+  companyUUID String? @map("company_uuid")
+  companyName String? @map("company_name")
+  //#####
+
+  //### Has Relations #####
+  // agrifoodProductCategory AgrifoodProductCategory? @relation(fields: [productCategoryUUID], references: [uuid])
+  productCategoryUUID String? @map("product_category_uuid")
+  productCategory     String? @map("product_category")
+  //#####
+
+  createdAt DateTime? @map("created_at")
+  updatedAt DateTime? @map("updated_at")
+  deletedAt String?   @map("deleted_at") @db.Text
+  createdBy Json?     @map("created_by")
+  updatedBy Json?     @map("updated_by")
+  deletedBy Json?
+  // ProductCatalogueDetails ProductCatalogueDetails[]
+
+  @@map("productCatalogues")
+}
+
+model ProductCatalogueDetails {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  //### Has Relations #####
+  // agrifoodCompanyProfile AgrifoodCompanyProfile? @relation(fields: [companyUUID], references: [uuid])
+  companyUUID String? @map("company_uuid")
+  companyName String? @map("company_name")
+  //#####
+
+  //### Has Relations #####
+  // agrifoodProductCategory AgrifoodProductCategory? @relation(fields: [productCategoryUUID], references: [uuid])
+  productCategoryUUID String? @map("product_category_uuid")
+  productCategory     String? @map("product_category")
+  //#####
+
+  //### Has Relations #####
+  // agrifoodProductSubCategory AgrifoodProductSubCategory? @relation(fields: [productSubCategoryUUID], references: [uuid])
+  productSubCategoryUUID String? @map("product_sub_category_uuid")
+  productSubCategory     String? @map("product_sub_category")
+  //#####
+
+  //### Has Relations ####
+  // productCatalogue     ProductCatalogue? @relation(fields: [productCatalogueUUID], references: [uuid])
+  productCatalogueUUID String? @map("product_catalogue_uuid")
+
+  sku    String? @map("sku")
+  name   String? @map("product_name")
+  code   String? @map("product_code")
+  weight Float?  @map("weight")
+
+  //### Has Relations #####
+  //unitObject Unit?   @relation(fields: [unitUUID], references: [uuid])
+  unitUUID String? @map("unit_uuid")
+  unit     String? @map("unit")
+  //#####
+
+  // price       Float?  @map("price")
+  priceLists  Json?   @map("price_list")
+  rawMaterial String? @map("raw_material")
+
+  productImageUrl String? @map("product_image_ur")
+
+  createdAt DateTime? @map("created_at")
+  updatedAt DateTime? @map("updated_at")
+  deletedAt String?   @map("deleted_at") @db.Text
+  createdBy Json?     @map("created_by")
+  updatedBy Json?     @map("updated_by")
+  deletedBy Json?
+  // SEFIRental         SEFIRental[]
+  // AgrifoodProduction AgrifoodProduction[]
+
+  @@map("productCatalogueDetails")
+}
+
+model SEFIRental {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  startDate String? @map("start_date")
+  endDate   String? @map("end_date")
+
+  //### Has Relations #####
+  // agrifoodCompanyProfile AgrifoodCompanyProfile? @relation(fields: [companyUUID], references: [uuid])
+  companyUUID String? @map("company_uuid")
+  companyName String? @map("company_name")
+  //#####
+
+  //### Has Relations #####
+  // productCatalogueDetails     ProductCatalogueDetails? @relation(fields: [productCatalogueDetailsUUID], references: [uuid])
+  productCatalogueDetailsUUID String? @map("product_catalogue_detail_uuid")
+  productCatalogueDetailsName String? @map("product_catalogue_detail_name")
+  //####
+
+  durationOfRental   Int?   @map("duration_of_rental")
+  quantity           Float? @map("quantity")
+  price              Float? @map("price")
+  totalValueProduced Float? @map("total_value_produced")
+
+  sefiMachineryIds Json? @map("sefi_machinery_ids")
+
+  paymentReceiptNo String? @map("payment_receipt_no")
+
+  createdAt DateTime? @map("created_at")
+  updatedAt DateTime? @map("updated_at")
+  deletedAt String?   @map("deleted_at") @db.Text
+  createdBy Json?     @map("created_by")
+  updatedBy Json?     @map("updated_by")
+  deletedBy Json?
+
+  @@map("sefiRentals")
+}
+
+model FoodSampling {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  //### Has Relations #####
+  // agrifoodCompanyProfile AgrifoodCompanyProfile? @relation(fields: [companyUUID], references: [uuid])
+  companyUUID String? @map("company_uuid")
+  companyName String? @map("company_name")
+  //#####  
+
+  sampleName String? @map("sample_name")
+  netWeight  Float?  @map("net_weight")
+  // condition         String? @map("condition")
+
+  //### Has Relations #####
+  // conditionObj  Condition? @relation(fields: [conditionUUID], references: [uuid])
+  conditionUUID String? @map("condition_uuid")
+  //#####  
+
+  sampleReferenceNo String @map("sample_reference_no")
+
+  typeOfSampling String? @map("type_of_sampling")
+
+  typeOfAnalysisIds Json? @map("typeOfAnalysisIds")
+  testIds           Json? @map("testIds")
+
+  samplingDate String? @map("sampling_date")
+  collectedBy  String? @map("collected_by")
+
+  purpose String? @map("purpose")
+
+  createdAt DateTime? @map("created_at")
+  updatedAt DateTime? @map("updated_at")
+  deletedAt String?   @map("deleted_at") @db.Text
+  createdBy Json?     @map("created_by")
+  updatedBy Json?     @map("updated_by")
+  deletedBy Json?
+
+  @@map("foodSamplings")
+}
+
+model Unit {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  name        String  @map("name")
+  description String? @map("description")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+  deletedBy Json?    @map("deleted_by")
+  // ProductCatalogueDetails ProductCatalogueDetails[]
+  // ProductCatalogueDetails ProductCatalogueDetails[]
+
+  @@map("Units")
+}
+
+model Condition {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  name        String  @map("name")
+  description String? @map("description")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+  deletedBy Json?    @map("deleted_by")
+  // FoodSampling FoodSampling[]
+
+  @@map("conditions")
+}
+
+model BioSecurityUnit {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  name        String  @map("name")
+  description String? @map("description")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+  deletedBy Json?    @map("deleted_by")
+  // BioSecurityTypeOfComodityDetails BioSecurityTypeOfComodityDetails[]
+
+  @@map("bioSecurityUnits")
+}
+
+model BioSecurityCategory {
+  id   BigInt  @id @default(autoincrement())
+  uuid String? @unique @db.VarChar(50)
+
+  name        String? @map("name")
+  description String? @map("description")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+  deletedBy Json?    @map("deleted_by")
+  // BioSecuritySubCategory           BioSecuritySubCategory[]
+  // BioSecurityTypeOfComodityDetails BioSecurityTypeOfComodityDetails[]
+
+  @@map("bioSecurityCategories")
+}
+
+model BioSecuritySubCategory {
+  id   BigInt  @id @default(autoincrement())
+  uuid String? @unique @db.VarChar(50)
+
+  name        String? @map("name")
+  description String? @map("description")
+
+  bioSecurityCategoryUUID String? @map("bio_security_category_uuid")
+  // bioSecurityCategory     BioSecurityCategory? @relation(fields: [bioSecurityCategoryUUID], references: [uuid])
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+  deletedBy Json?    @map("deleted_by")
+  // BioSecurityTypeOfComodityDetails BioSecurityTypeOfComodityDetails[]
+
+  @@map("bioSecurityCategoryDetails")
+}
+
+model BioSecurityTypeOfComodity {
+  id   BigInt  @id @default(autoincrement())
+  uuid String? @unique @db.VarChar(50)
+
+  name        String? @map("name")
+  description String? @map("description")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+  deletedBy Json?    @map("deleted_by")
+  // BioSecurityTypeOfComodityDetails BioSecurityTypeOfComodityDetails[]
+  // BioSecurityImportData            BioSecurityImportData[]
+
+  @@map("bioSecurityTypeOfComodities")
+}
+
+model BioSecurityTypeOfComodityDetails {
+  id   BigInt  @id @default(autoincrement())
+  uuid String? @unique @db.VarChar(50)
+
+  code String? @map("code")
+
+  englishName String? @map("english_name")
+  localName   String? @map("local_name")
+
+  activeIngredients String? @map("active_ingredients")
+
+  bioSecurityTypeOfComodityUUID String? @map("bio_security_type_of_commodity_uuid")
+  // bioSecurityTypeOfCommodity    BioSecurityTypeOfComodity? @relation(fields: [bioSecurityTypeOfComodityUUID], references: [uuid])
+
+  bioSecurityCategoryUUID String? @map("bio_security_category_uuid")
+  // bioSecurityCategory     BioSecurityCategory? @relation(fields: [bioSecurityCategoryUUID], references: [uuid])
+
+  bioSecuritySubCategoryUUID String? @map("bio_security_sub_category_uuid")
+  // bioSecuritySubCategory     BioSecuritySubCategory? @relation(fields: [bioSecuritySubCategoryUUID], references: [uuid])
+
+  bioSecurityUnitUUID String? @map("bio_security_unit_uuid")
+  // bioSecurityUnit     BioSecurityUnit? @relation(fields: [bioSecurityUnitUUID], references: [uuid])
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+  deletedBy Json?    @map("deleted_by")
+  // BioSecurityImportData BioSecurityImportData[]
+
+  @@index(bioSecurityTypeOfComodityUUID)
+  @@map("bioSecurityTypeOfComodityDetails")
+}
+
+model BioSecurityIndividualProfile {
+  id   BigInt  @id @default(autoincrement())
+  uuid String? @unique @db.VarChar(50)
+
+  name          String? @map("name")
+  icNo          String? @map("ic_no")
+  contactNumber String? @map("contact_number")
+  address       String? @map("address")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+
+  deletedBy Json? @map("deleted_by")
+
+  @@map("bioSecurityIndividualProfile")
+}
+
+model BioSecurityCompanyProfile {
+  id   BigInt  @id @default(autoincrement())
+  uuid String? @unique @db.VarChar(50)
+
+  status             String? @map("status")
+  companyId          String? @map("company_id")
+  companyRegNo       String? @map("company_reg_no")
+  companyCropRegNo   String? @map("company_crop_reg_no")
+  companyAnimalRegNo String? @map("company_animal_reg_no")
+  companyRegDate     String? @map("company_reg_date")
+
+  companyCropRegDate   String? @map("company_crop_reg_date")
+  companyAnimalRegDate String? @map("company_animal_reg_date")
+
+  companyCropRenewalDate   String? @map("company_crop_renewal_date")
+  companyAnimalRenewalDate String? @map("company_animal_renewal_date")
+
+  companyName      String? @map("company_name")
+  companyOwnerName String? @map("company_owner_name")
+  icNo             String? @map("ic_no")
+  contactDetails   String? @map("contact_details")
+  companyAddress   String? @map("company_address") @db.Text
+  otherAddress     String? @map("other_address") @db.Text()
+
+  approvedSuppliers         String? @map("approved_suppliers") @db.Text()
+  approvedSupplirersAddress String? @map("approved_supplier_address") @db.Text()
+
+  typeOfComodityIds Json? @map("type_of_comodity_ids")
+
+  uploadFile String? @map("upload_file")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+
+  deletedBy Json? @map("deleted_by")
+
+  @@map("bioSecurityCompanyProfile")
+}
+
+model BioSecurityNonComplianceLists {
+  id   BigInt  @id @default(autoincrement())
+  uuid String? @unique @db.VarChar(50)
+
+  complianceAndEnforcementUUID String? @map("compliance_and_enforcement_uuid")
+
+  individualProfileUUID String? @map("individual_profile_uuid")
+  companyProfileUUID    String? @map("company_profile_uuid")
+
+  date           String? @map("date")
+  inputByOfficer Json?   @map("input_by_officer")
+
+  type String? @map("type")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+
+  deletedBy Json? @map("deleted_by")
+
+  @@map("bioSecurityComplianceLists")
+}
+
+model BioSecurityCountry {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  name        String  @map("name")
+  description String? @map("description")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+  deletedBy Json?    @map("deleted_by")
+  // BioSecurityImportData                      BioSecurityImportData[]
+  // BioSecurityNonComplianceCommercial         BioSecurityNonComplianceCommercial[]
+  // BioSecurityNonCompliancePersonal           BioSecurityNonCompliancePersonal[]
+  // BioSecurityNonCompliancePersonalConcession BioSecurityNonCompliancePersonalConcession[]
+
+  @@map("bioSecurityCountrys")
+}
+
+model BioSecurityImportData {
+  id   BigInt  @id @default(autoincrement())
+  uuid String? @unique @db.VarChar(50)
+
+  pointOfEntry String? @map("point_of_entry") //This is control post
+  entryDate    String? @map("entry_date")
+  companyUUID  String? @map("company_uuid")
+
+  permitNumber            String? @map("permit_number")
+  healthCertificateNumber String? @map("health_certificate_number")
+
+  countryUUID String? @map("country_uuid")
+  // bioSecurityCountry BioSecurityCountry? @relation(fields: [countryUUID], references: [uuid])
+
+  typeOfComodityUUID String? @map("type_of_comodity_uuid")
+  // bioSecurityTypeOfComodity BioSecurityTypeOfComodity? @relation(fields: [typeOfComodityUUID], references: [uuid])
+
+  comodityDetailUUID String? @map("comodity_detail_uuid")
+  // comodityDetail     BioSecurityTypeOfComodityDetails? @relation(fields: [comodityDetailUUID], references: [uuid])
+
+  quantity Float? @map("quantity")
+  cif      Float? @map("cif")
+
+  district String? @map("district")
+
+  netWeight      Float? @map("net_weight")
+  actualQuantity Float? @map("actual_quantity")
+
+  timeOfEntry     String? @map("time_of_entry")
+  referenceNumber String? @map("reference_number")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+
+  deletedBy Json? @map("deleted_by")
+
+  @@map("bioSecurityImportData")
+}
+
+model BioSecurityCompliance {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  name        String  @map("name")
+  description String? @map("description")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+
+  deletedBy Json? @map("deleted_by")
+
+  @@map("bioSecurityCompliances")
+}
+
+model BioSecurityTakenAction {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  name        String  @map("name")
+  description String? @map("description")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+
+  deletedBy Json? @map("deleted_by")
+
+  @@map("bioSecurityTakenActions")
+}
+
+model BioSecurityNonComplianceCommercial {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  pointOfEntry String? @map("point_of_entry") //This is control post
+  district     String? @map("district")
+
+  entryDate String? @map("entry_date")
+
+  staffName   String? @map("staff_name")
+  companyUUID String? @map("company_uuid")
+
+  nonComplienceUUID       Json?   @map("non_complicen_uuid")
+  permitNumber            String? @map("permit_number")
+  healthCertificateNumber String? @map("health_certificate_number")
+
+  countryUUID String? @map("country_uuid")
+  // bioSecurityCountry BioSecurityCountry? @relation(fields: [countryUUID], references: [uuid])
+
+  remarks String? @map("remarks")
+
+  takenActionUUID     String? @map("taken_action_uuid")
+  nosReferenceNumber  String? @map("nos_reference_number")
+  actionByEnforcement String? @map("action_by_enforcement")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+
+  deletedBy Json? @map("deleted_by")
+
+  @@map("bioSecurityNonComplianceCommercials")
+}
+
+model BioSecurityNonCompliancePersonal {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  pointOfEntry String? @map("point_of_entry") //This is control post
+  district     String? @map("district")
+
+  entryDate String? @map("entry_date")
+
+  staffName             String? @map("staff_name")
+  individualProfileUUID String? @map("individual_profile_uuid")
+
+  nonComplienceUUID       Json?   @map("non_complicen_uuid")
+  permitNumber            String? @map("permit_number")
+  healthCertificateNumber String? @map("health_certificate_number")
+
+  countryUUID String? @map("country_uuid")
+  // bioSecurityCountry BioSecurityCountry? @relation(fields: [countryUUID], references: [uuid])
+
+  remarks String? @map("remarks")
+
+  takenActionUUID     String? @map("taken_action_uuid")
+  nosReferenceNumber  String? @map("nos_reference_number")
+  actionByEnforcement String? @map("action_by_enforcement")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+
+  deletedBy Json? @map("deleted_by")
+
+  @@map("bioSecurityNonCompliancePersonals")
+}
+
+model BioSecurityNonCompliancePersonalConcession {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  pointOfEntry String? @map("point_of_entry") //This is control post
+  district     String? @map("district")
+
+  entryDate String? @map("entry_date")
+
+  staffName String? @map("staff_name")
+
+  icNo                    String? @map("ic_no")
+  name                    String? @map("name")
+  contactDetails          String? @map("contact_details")
+  address                 String? @map("address")
+  nonComplienceUUID       Json?   @map("non_complicen_uuid")
+  permitNumber            String? @map("permit_number")
+  healthCertificateNumber String? @map("health_certificate_number")
+
+  countryUUID String? @map("country_uuid")
+  // bioSecurityCountry BioSecurityCountry? @relation(fields: [countryUUID], references: [uuid])
+
+  remarks String? @map("remarks")
+
+  takenActionUUID     String? @map("taken_action_uuid")
+  nosReferenceNumber  String? @map("nos_reference_number")
+  actionByEnforcement String? @map("action_by_enforcement")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+
+  deletedBy Json? @map("deleted_by")
+
+  @@map("bioSecurityNonCompliancePersonalConcessions")
+}
+
+model CropsCategory {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  name        String? @map("name")
+  description String? @map("description")
+
+  prefixCode String?  @map("prefix_code")
+  createdAt  DateTime @map("created_at") @db.Timestamp
+  updatedAt  DateTime @map("updated_at") @db.Timestamp
+  deletedAt  String?  @map("deleted_at") @db.Text
+  createdBy  Json?    @map("created_by")
+  updatedBy  Json?    @map("updated_by")
+
+  deletedBy Json? @map("deleted_by")
+  // CropsVegetable     CropsVegetable[]
+  // CropsFruit         CropsFruit[]
+  // MiscellaneousCrops MiscellaneousCrops[]
+  // OrnamentalPlant    OrnamentalPlant[]
+
+  @@map("cropsCategory")
+}
+
+model CropsPaddyCategory {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  name        String?  @map("name")
+  description String?  @map("description")
+  createdAt   DateTime @map("created_at") @db.Timestamp
+  updatedAt   DateTime @map("updated_at") @db.Timestamp
+  deletedAt   String?  @map("deleted_at") @db.Text
+  createdBy   Json?    @map("created_by")
+  updatedBy   Json?    @map("updated_by")
+
+  deletedBy Json? @map("deleted_by")
+
+  @@map("cropsPaddyCategory")
+}
+
+model CropsVegetable {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  vegetableId       String? @map("vegetable_id")
+  cropsCategoryUUID String? @map("crops_category_uuid")
+  // cropsCategory     CropsCategory? @relation(fields: [cropsCategoryUUID], references: [uuid])
+  localName         String? @map("local_name")
+  englishName       String? @map("english_name")
+  cropName          String? @map("crop_name")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+
+  deletedBy Json? @map("deleted_by")
+
+  @@map("cropsVegetables")
+}
+
+model Season {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  name      String?  @map("name")
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+
+  deletedBy Json? @map("deleted_by")
+  // CropsFruit CropsFruit[]
+}
+
+model CropsFruit {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  fruitId           String? @map("fruit_id")
+  cropsCategoryUUID String? @map("crops_category_uuid")
+  // cropsCategory     CropsCategory? @relation(fields: [cropsCategoryUUID], references: [uuid])
+
+  seasonUUID String? @map("season_uuid")
+  // season     Season? @relation(fields: [seasonUUID], references: [uuid])
+
+  localName   String? @map("local_name")
+  englishName String? @map("english_name")
+  cropName    String? @map("crop_name")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+
+  deletedBy Json?   @map("deleted_by")
+  // Season    Season? @relation(fields: [seasonId], references: [id])
+  seasonId  BigInt?
+
+  @@map("cropsFruits")
+}
+
+model CropsFruitDetail {
+  id          BigInt  @id @default(autoincrement())
+  uuid        String  @unique @db.VarChar(50)
+  cropFruitId String? @map("crop_fruit_id")
+
+  economicLife   Float? @map("economic_life")
+  estimatedYield Float? @map("estimated_yield")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+
+  deletedBy Json? @map("deleted_by")
+
+  @@map("cropsFruitDetails")
+}
+
+model ProfileIdGenerator {
+  id      BigInt  @id @default(autoincrement())
+  uuid    String  @unique @db.VarChar(50)
+  counter Int
+  menu    String?
+
+  @@map("profileIdGenerators")
+}
+
+model AgrifoodCodeGenerator {
+  id      BigInt @id @default(autoincrement())
+  uuid    String @unique @db.VarChar(50)
+  counter Int
+
+  categoryId String?
+  menu       String?
+
+  @@map("agrifoodCodeGenerator")
+}
+
+model MiscellaneousCrops {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  miscellaneousCropId String? @map("miscellaneous_crop_id")
+  localName           String? @map("local_name")
+  englishName         String? @map("english_name")
+
+  cropsCategoryUUID String? @map("crops_category_uuid")
+  // cropsCategory     CropsCategory? @relation(fields: [cropsCategoryUUID], references: [uuid])
+
+  cropName String? @map("crop_name")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+
+  deletedBy Json? @map("deleted_by")
+
+  @@map("miscellaneousCrops")
+}
+
+model CutFlower {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  cutFlowerId String? @map("cut_flower_id")
+  localName   String? @map("local_name")
+  englishName String? @map("english_name")
+  cropName    String? @map("crop_name")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+
+  deletedBy Json? @map("deleted_by")
+
+  @@map("cutFlowers")
+}
+
+model OrnamentalPlant {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  ornamentalPlantId String? @map("ornamental_plant_id")
+  localName         String? @map("local_name")
+  englishName       String? @map("english_name")
+  cropName          String? @map("crop_name")
+
+  cropsCategoryUUID String? @map("crops_category_uuid")
+  // cropsCategory     CropsCategory? @relation(fields: [cropsCategoryUUID], references: [uuid])
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+
+  deletedBy Json? @map("deleted_by")
+
+  @@map("ornamentalPlants")
+}
+
+model SellingLocation {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  locationId String? @map("locationId")
+  name       String? @map("name")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+
+  deletedBy Json? @map("deleted_by")
+
+  @@map("sellingLocations")
+}
+
+model CropRetailPrice {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  farmLocationUUID String? @map("farm_location_uuid")
+  district         String? @map("district")
+  monthYear        String? @map("month_year")
+  code             String? @map("code")
+  item             String? @map("item")
+  description      String? @map("description")
+  retailPrice      Float?  @map("retail_price")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+
+  deletedBy Json? @map("deleted_by")
+
+  @@map("cropRetailPrices")
+}
+
+model CropsPaddyVariety {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  paddyId           String? @map("paddy_id")
+  cropsCategoryUUID String? @map("crops_category_uuid")
+  varietyName       String? @map("variety_name")
+  schemePrice       Float?  @map("scheme_price")
+  marketPrice       Float?  @map("market_price")
+
+  varietyType String? @map("variety_type")
+  typeOfSeed  String? @map("type_of_seed")
+  description String? @map("description")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+
+  deletedBy Json? @map("deleted_by")
+
+  @@map("cropsPaddyVarieties")
+}
+
+model CropsPaddySeedVariety {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  paddySeedId       String? @map("paddy_seed_id")
+  cropsCategoryUUID String? @map("crops_category_uuid")
+  varietyName       String? @map("variety_name")
+  price             Float?  @map("price")
+
+  varietyType String? @map("variety_type")
+  typeOfSeed  String? @map("type_of_seed")
+  description String? @map("description")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+
+  deletedBy Json? @map("deleted_by")
+
+  @@map("cropsPaddySeedVarieties")
+}
+
+model CropsPaddySeedlingVariety {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  paddySeedlingId   String? @map("paddy_seed_id")
+  cropsCategoryUUID String? @map("crops_category_uuid")
+  varietyName       String? @map("variety_name")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+
+  deletedBy Json? @map("deleted_by")
+
+  @@map("cropsPaddySeedlingVarieties")
+}
+
+model CropsMilledRiceProduct {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  typeOfProductId String? @map("type_of_product_id")
+  typeOfProduct   String? @map("type_of_product")
+  price           Float?  @map("price")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+
+  deletedBy Json? @map("deleted_by")
+
+  @@map("cropsMilledRiceProducts")
+}
+
+model CropsPaddyByProduct {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  typeOfByProductId String? @map("type_of_by_product_id")
+  typeOfByProduct   String? @map("type_of_by_product")
+  price             Float?  @map("price")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+
+  deletedBy Json? @map("deleted_by")
+
+  @@map("cropsPaddyByProducts")
+}
+
+model VegetableProduction {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  monthYear String? @map("month_year")
+
+  farmerUUID String? @map("company_uuid")
+  farmAreaId String? @map("farm_area_uuid")
+  address    String? @map("address") @db.Text
+
+  vegetableUUID  String? @map("vegetable_uuid")
+  production     Float?  @map("production")
+  cultivatedArea Float?  @map("cultivated_area")
+  farmPrice      Float?  @map("farm_price")
+  totalFarmValue Float?  @map("total_farm_value")
+
+  createdAt String  @map("created_at") @db.Text
+  updatedAt String  @map("updated_at") @db.Text
+  deletedAt String? @map("deleted_at") @db.Text
+  createdBy Json?   @map("created_by")
+  updatedBy Json?   @map("updated_by")
+
+  deletedBy Json? @map("deleted_by")
+
+  // FarmerProfile   FarmerProfile? @relation(fields: [farmerProfileId], references: [id])
+  // farmerProfileId BigInt?
+  // FarmProfile     FarmProfile?   @relation(fields: [farmProfileId], references: [id])
+  // farmProfileId   BigInt?
+
+  @@map("vegetableProductions")
+}
+
+model FruitProductionActual {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  monthYear String? @map("month_year")
+
+  farmerUUID String? @map("company_uuid")
+  farmAreaId String? @map("farm_area_uuid")
+  address    String? @map("address") @db.Text
+
+  fruitUUID      String? @map("fruit_uuid")
+  production     Float?  @map("production")
+  cultivatedArea Float?  @map("cultivated_area")
+  farmPrice      Float?  @map("farm_price")
+  totalFarmValue Float?  @map("total_farm_value")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+
+  deletedBy Json? @map("deleted_by")
+
+  // FarmerProfile   FarmerProfile? @relation(fields: [farmerProfileId], references: [id])
+  // farmerProfileId BigInt?
+  // FarmProfile     FarmProfile?   @relation(fields: [farmProfileId], references: [id])
+  // farmProfileId   BigInt?
+
+  @@map("fruitProductionActuals")
+}
+
+model FruitProductionEstimated {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  monthYear String? @map("month_year")
+
+  farmerUUID String? @map("company_uuid")
+  farmAreaId String? @map("farm_area_uuid")
+  address    String? @map("address") @db.Text
+
+  fruitUUID        String? @map("fruit_uuid")
+  noOfFruitTrees   Float?  @map("no_of_fruit_trees")
+  economicLifeYear Float?  @map("economic_life_year")
+  estimatedYield   Float?  @map("estimated_yield")
+  production       Float?  @map("production")
+  farmPrice        Float?  @map("farm_price")
+  cultivatedArea   Float?  @map("cultivated_area")
+  totalFarmValue   Float?  @map("total_farm_value")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+
+  deletedBy Json? @map("deleted_by")
+
+  // FarmerProfile   FarmerProfile? @relation(fields: [farmerProfileId], references: [id])
+  // farmerProfileId BigInt?
+  // FarmProfile     FarmProfile?   @relation(fields: [farmProfileId], references: [id])
+  // farmProfileId   BigInt?
+
+  @@map("fruitProductionEstimateds")
+}
+
+model MiscellaneousProduction {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  monthYear String? @map("month_year")
+
+  farmerUUID String? @map("company_uuid")
+  farmAreaId String? @map("farm_area_uuid")
+  address    String? @map("address") @db.Text
+
+  miscellaneousCropUUID String? @map("miscellaneous_crop_uuid")
+  production            Float?  @map("production")
+  cultivatedArea        Float?  @map("cultivated_area")
+  farmPrice             Float?  @map("farm_price")
+  totalFarmValue        Float?  @map("total_farm_value")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+
+  deletedBy Json? @map("deleted_by")
+
+  @@map("miscellaneousProduction")
+}
+
+model CutFlowerProduction {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  monthYear String? @map("month_year")
+
+  farmerUUID String? @map("company_uuid")
+  farmAreaId String? @map("farm_area_uuid")
+  address    String? @map("address") @db.Text
+
+  cutFlowerUUID  String? @map("cut_flower_uuid")
+  quantity       Float?  @map("quantityt")
+  sellingPrice   Float?  @map("selling_price")
+  totalRevenue   Float?  @map("total_revenue")
+  cultivatedArea Float?  @map("cultivated_area")
+
+  sellingLocationUUID String? @map("selling_location_uuid")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+
+  deletedBy Json? @map("deleted_by")
+
+  @@map("cutFlowerProductions")
+}
+
+model OrnamentalPlantProduction {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  monthYear String? @map("month_year")
+
+  farmerUUID String? @map("company_uuid")
+  farmAreaId String? @map("farm_area_uuid")
+  address    String? @map("address") @db.Text
+
+  ornamentalPlantUUID String? @map("ornamental_plant_uuid")
+  quantity            Float?  @map("quantityt")
+  sellingPrice        Float?  @map("selling_price")
+  totalRevenue        Float?  @map("total_revenue")
+
+  cultivatedArea Float? @map("cultivated_area")
+
+  sellingLocationUUID String? @map("selling_location_uuid")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+
+  deletedBy Json? @map("deleted_by")
+
+  @@map("ornamentalPlantProductions")
+}
+
+model PaddyProduction {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  farmerUUID String? @map("company_uuid")
+  farmAreaId String? @map("farm_area_uuid")
+
+  plantingDate  String? @map("planting_date")
+  harvestedDate String? @map("harvested_date")
+
+  cropsPaddyVarietyUUID         String? @map("crops_paddy_variety_uuid")
+  totalArea                     Float?  @map("totalArea")
+  cultivatedArea                Float?  @map("cultivated_area")
+  productionUnderPaddyScheme    Float?  @map("production_under_paddy_scheme")
+  productionUnderNonPaddyScheme Float?  @map("production_under_non_paddy_scheme")
+  totalPaddyProduction          Float?  @map("total_paddy_production")
+
+  schemePrice Float? @map("scheme_price")
+  marketPrice Float? @map("market_price")
+  schemeValue Float? @map("scheme_value")
+  totalValue  Float? @map("total_value")
+
+  seasonUUID           String? @map("season_uuid")
+  plantingSeasonDetail String? @map("planting_season_detail") @db.Text
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+
+  deletedBy Json? @map("deleted_by")
+
+  @@map("paddyProductions")
+}
+
+model PaddySeedlingSalesAndPrice {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  date String? @map("date")
+
+  farmerUUID String? @map("company_uuid")
+  farmAreaId String? @map("farm_area_uuid")
+
+  cropsPaddyVarietyUUID String? @map("crops_paddy_variety_uuid")
+  noOfFarmers           Float?  @map("no_of_farmers")
+  noOfOrders            Float?  @map("no_of_orders")
+  totalTraysProduced    Float?  @map("total_trays_produced")
+  totalTraysSold        Float?  @map("total_trays_sold")
+  priceTrays            Float?  @map("price_trays")
+  totalTraysCompensated Float?  @map("total_trays_compensated")
+  remindingOfSeedlings  Float?  @map("reminding_of_seedlings")
+  remarks               String? @map("remarks") @db.Text
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+
+  deletedBy Json? @map("deleted_by")
+
+  @@map("paddySeedlingSalesAndPrices")
+}
+
+model PaddySeedlingProduction {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  date String? @map("date")
+
+  farmerUUID String? @map("company_uuid")
+  farmAreaId String? @map("farm_area_uuid")
+
+  cropsPaddyVarietyUUID String? @map("crops_paddy_variety_uuid")
+  noOfSeeds             Float?  @map("no_of_seeds")
+  totalTraysProduced    Float?  @map("total_trays_produced")
+  totalTraysSold        Float?  @map("total_trays_sold")
+  noOfSeedsExported     Float?  @map("no_of_seed_exported")
+  seedlingReminder      Float?  @map("seedling_reminder")
+  totalTraysCompensated Float?  @map("total_trays_compensated")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+
+  deletedBy Json? @map("deleted_by")
+
+  @@map("paddySeedlingProductions")
+}
+
+model PaddySeedProduction {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  plantingMonthYear String? @map("planting_month_year")
+  harvestMonthYear  String? @map("harvest_month_year")
+
+  farmerUUID String? @map("company_uuid")
+  farmAreaId String? @map("farm_area_uuid")
+
+  seasonUUID                   String? @map("season_uuid")
+  plantingSeasonDetail         String? @map("planting_season_detail") @db.Text
+  totalPaddySeedCultivatedArea Float?  @map("total_paddy_seed_cultivated_area")
+  totalPaddySeedHarvestedArea  Float?  @map("total_paddy_seed_harvested_area")
+  totalPaddySeedProduction     Float?  @map("total_paddy_seed_production")
+  totalPaddySeedValue          Float?  @map("total_paddy_seed_value")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+
+  deletedBy Json? @map("deleted_by")
+
+  @@map("paddySeedProductions")
+}
+
+model PaddySeedProductionDetail {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  paddySeedProductionUUID String? @map("paddy_seed_production_uuid")
+
+  plantingMonthYear String? @map("planting_month_year")
+  harvestMonthYear  String? @map("harvest_month_year")
+
+  cropsPaddySeedVarietyUUID String? @map("crops_paddy_seed_variety_uuid")
+  cultivatedArea            Float?  @map("cultivated_area")
+  harvestedArea             Float?  @map("harvested_area")
+  production                Float?  @map("production")
+  price                     Float?  @map("price")
+  totalValue                Float?  @map("total_value")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+
+  deletedBy Json? @map("deleted_by")
+
+  @@map("paddySeedProductionDetails")
+}
+
+model MilledRiceLocation {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  location    String? @map("location")
+  description String? @map("description")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+
+  deletedBy Json? @map("deleted_by")
+
+  @@map("milledRiceLocation")
+}
+
+model MilledRiceProduction {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  date            String? @map("date")
+  inputByUserUUID String? @map("input_by_user_uuid")
+
+  cropsPaddyVarietyUUID String? @map("crops_paddy_variety_uuid")
+  millingLocationUUID   String? @map("milling_location_uuid")
+
+  store       String? @map("store")
+  batchNumber String? @map("batch_number")
+
+  paddyNoOfSacks Float? @map("paddy_no_of_sacks")
+  paddyKgSacks   Int?   @map("paddy_kg_sacks")
+  totalPaddy     Float? @map("total_paddy")
+
+  brokenRiceNoOfSacks  Float? @map("broken_rice_no_of_sacks")
+  brokenRiceKgSacks    Int?   @map("broken_rice_kg_sacks")
+  brokenRicePricePerKg Float? @map("broken_rice_price_per_kg")
+  totalBrokenRice      Float? @map("total_broken_rice")
+  brokenRiceTotalValue Float? @map("broken_rice_total_value")
+
+  headRiceNoOfSacks  Float? @map("head_rice_no_of_sacks")
+  headRiceKgSacks    Int?   @map("head_rice_kg_sacks")
+  headRicePricePerKg Float? @map("head_rice_price_per_kg")
+  totalHeadRice      Float? @map("total_head_rice")
+  headRiceTotalValue Float? @map("head_rice_total_value")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+
+  deletedBy Json? @map("deleted_by")
+
+  @@map("milledRiceProduction")
+}
+
+model MilledRiceProductionDetail {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  date String? @map("date")
+
+  milledRiceProductionUUID String? @map("milled_rice_production_uuid")
+  cropsPaddyByProductUUID  String? @map("crops_paddy_by_product_uuid")
+  weight                   Float?  @map("weight")
+  price                    Float?  @map("price")
+  totalValue               Float?  @map("total_value")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+
+  deletedBy Json? @map("deleted_by")
+
+  @@map("milledRiceProductionDetails")
+}
+
+model VegetableRetailPrice {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  monthYear        String? @map("month_year")
+  vegetableUUID    String? @map("vegetable_uuid")
+  farmLocationUUID String? @map("farm_location_uuid")
+
+  district    String? @map("district")
+  description String? @map("description") @db.Text
+  price       Float?  @map("price")
+
+  bruneiMuaraPrice Float? @map("brunei_muara_price")
+  tutongPrice      Float? @map("tutong_price")
+  belaitPrice      Float? @map("belait_price")
+  temburongPrice   Float? @map("temburong")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+
+  deletedBy Json? @map("deleted_by")
+
+  @@map("vegetableRetailPrices")
+}
+
+model FruitRetailPrice {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  monthYear        String? @map("month_year")
+  fruitUUID        String? @map("fruit_uuid")
+  farmLocationUUID String? @map("farm_location_uuid")
+  district         String? @map("district")
+  description      String? @map("description") @db.Text
+  price            Float?  @map("price")
+
+  bruneiMuaraPrice Float? @map("brunei_muara_price")
+  tutongPrice      Float? @map("tutong_price")
+  belaitPrice      Float? @map("belait_price")
+  temburongPrice   Float? @map("temburong")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+
+  deletedBy Json? @map("deleted_by")
+
+  @@map("fruitRetailPrices")
+}
+
+model MiscellaneousCropsRetailPrice {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  monthYear             String? @map("month_year")
+  miscellaneousCropUUID String? @map("miscellaneous_crop_uuid")
+  farmLocationUUID      String? @map("farm_location_uuid")
+  district              String? @map("district")
+  description           String? @map("description") @db.Text
+  price                 Float?  @map("price")
+
+  bruneiMuaraPrice Float? @map("brunei_muara_price")
+  tutongPrice      Float? @map("tutong_price")
+  belaitPrice      Float? @map("belait_price")
+  temburongPrice   Float? @map("temburong")
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+
+  deletedBy Json? @map("deleted_by")
+
+  @@map("miscellaneousCropRetailPrices")
+}
+
+model ModernTechnology {
+  id          BigInt  @id @default(autoincrement())
+  uuid        String  @unique @db.VarChar(50)
+  name        String? @map("name")
+  description String? @map("description") @db.Text
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+
+  deletedBy Json? @map("deleted_by")
+
+  @@map("modernTechnologies")
+}
+
+model LivestockCommodity {
+  id          BigInt  @id @default(autoincrement())
+  uuid        String  @unique @db.VarChar(50)
+  name        String? @map("name")
+  description String? @map("description") @db.Text
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+
+  deletedBy Json? @map("deleted_by")
+
+  @@map("livestockCommodities")
+}
+
+model LivestockCommodityDetail {
+  id   BigInt @id @default(autoincrement())
+  uuid String @unique @db.VarChar(50)
+
+  livestockCommodityUUID String? @map("livestock_commodity_uuid")
+  unitUUID               String? @map("unit_uuid")
+
+  name        String? @map("name")
+  description String? @map("description") @db.Text
+
+  createdAt DateTime @map("created_at") @db.Timestamp
+  updatedAt DateTime @map("updated_at") @db.Timestamp
+  deletedAt String?  @map("deleted_at") @db.Text
+  createdBy Json?    @map("created_by")
+  updatedBy Json?    @map("updated_by")
+
+  deletedBy Json? @map("deleted_by")
+
+  @@map("livestockCommodityDetails")
+}

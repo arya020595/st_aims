@@ -1,0 +1,12 @@
+node_modules
+.next
+*.log
+.env
+.git
+.DS_Store
+bun.lockb
+lerna-debug.log
+services/graphql/node_modules
+services/app/node_modules
+services/app/.next
+services/graphql/utilities

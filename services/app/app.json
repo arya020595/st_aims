@@ -1,0 +1,14 @@
+{
+  "name": "AIMS Agriculture",
+  "version": "1.1.3",
+  "favicon": "/images/doa-logo.png",
+  "icon": "/images/doa-logo.png",
+  "welcomeLogo": "/images/doa-logo.png",
+  "copyright": {
+    "year": "2021",
+    "owner": "ST-Advisory",
+    "siteUrl": ""
+  },
+  "websocketUrl": "",
+  "basePath": "/doa"
+}

@@ -1,0 +1,64 @@
+# More Options and Examples please see: https://github.com/anvilco/spectaql/blob/main/config-example.yml
+
+spectaql:
+  logoFile: ../app/public/images/doa-logo.png
+  faviconFile: ../app/public/images/doa-logo.png
+  displayAllServers: true
+
+introspection:
+  removeTrailingPeriodFromDescriptions: false
+  url: http://localhost:9101/graphql
+  # headers:
+  #   Authorization: Bearer s3cretT0k2n
+
+  # What manipulation of the query/mutation/subscription name would you like to perform to determine
+  # the name in query examples? Possible values:
+  #
+  # - none: will use same exact name as query)
+  # - capitalizeFirst: will capitalize the first letter and leave the rest.
+  # - capitalize: will capitalize the first letter and convert the rest to lower case.
+  # - camelCase
+  # - snakeCase
+  # - upperCase: all letters to upper case.
+  # - lowerCase: all letters to lower case.
+  queryNameStrategy: none
+
+  # When generating a Query or Mutation example, to what maximum depth should any nested fields
+  # be represented before a fragment placeholder is rendered?
+  #
+  # Default: 1
+  fieldExpansionDepth: 2
+
+  spectaqlDirective:
+    enable: true
+
+extensions:
+  graphqlScalarExamples: true
+
+info:
+  title: Sistem Ekonomi Pintar version 2 (LKM SEPv2.0)
+  description: Sistem Ekonomi Pintar developed as version 2 (LKM SEPv2.0) by Lembaga Koko Malaysia
+  x-htmlTitle: LKM SEPv2.0
+  # termsOfService: https://www.example.com/terms
+  contact:
+    name: Lembaga Koko Malaysia
+    url: https://www.koko.gov.my
+    # email: support@example.com
+  # license:
+  #   name: Apache 2.0
+  #   url: https://www.apache.org/licenses/LICENSE-2.0.html
+  x-introItems:
+    - title: Sistem Ekonomi Pintar version 2 (LKM SEPv2.0)
+      description: Sistem Ekonomi Pintar developed as version 2 (LKM SEPv2.0) by Lembaga Koko Malaysia
+  x-hidePoweredBy: false
+
+servers:
+  - url: http://localhost:9101/graphql
+    description: Staging
+  - url: http://localhost:9101/graphql
+    description: Production
+    production: true
+    # headers:
+    #   - name: Authorization
+    #     # example: Bearer <YOUR_TOKEN_HERE>
+    #     comment: Your foo from bar

@@ -1,0 +1,381 @@
+.btn {
+  @apply transition duration-300 ease-in-out rounded-md text-white font-light text-sm overflow-hidden outline-none;
+}
+.btn:focus {
+  @apply outline-none;
+}
+
+.btn-primary {
+  @apply bg-primary-500 py-2 px-8 border-b-2 border-primary-700;
+}
+.btn-primary:hover {
+  @apply bg-primary-700 border-primary-800;
+}
+.btn-primary.btn-soft {
+  @apply bg-primary-200 border-primary-400 text-primary-700;
+}
+.btn-primary.btn-soft:hover {
+  @apply bg-primary-400 border-primary-600 text-white;
+}
+.btn-primary.btn-flat {
+  @apply text-primary-500 border border-primary-500;
+}
+.btn-primary.btn-flat:hover {
+  @apply bg-gray-300 border-gray-400 text-black;
+}
+.btn-primary:disabled:not(.btn-flat) {
+  @apply bg-primary-200 border-gray-200 text-primary-500 cursor-not-allowed pointer-events-none;
+}
+
+.btn-blue-secondary {
+  @apply bg-blue-300 py-2 px-8 border-b-2 border-blue-700 text-blue-700;
+}
+.btn-blue-secondary:hover {
+  @apply bg-blue-700 border-blue-800 text-white;
+}
+.btn-blue-secondary.btn-soft {
+  @apply bg-blue-200 border-blue-400 text-white;
+}
+.btn-blue-secondary.btn-soft:hover {
+  @apply bg-blue-400 border-blue-600 text-white;
+}
+.btn-blue-secondary.btn-flat {
+  @apply text-white;
+}
+.btn-blue-secondary.btn-flat:hover {
+  @apply bg-gray-300 border-gray-400 text-black;
+}
+.btn-blue-secondary:disabled:not(.btn-flat) {
+  @apply bg-blue-200 border-gray-200 text-blue-400 cursor-not-allowed pointer-events-none;
+}
+
+.btn-gray {
+  @apply bg-gray-500 py-2 px-8 border-b-2 border-gray-700;
+}
+.btn-gray:hover {
+  @apply bg-gray-700 border-gray-800 text-white;
+}
+.btn-gray.btn-soft {
+  @apply bg-gray-200 border-gray-400 text-white;
+}
+.btn-gray.btn-soft:hover {
+  @apply bg-gray-400 border-gray-600 text-white;
+}
+.btn-gray.btn-flat {
+  @apply text-white;
+}
+.btn-gray.btn-flat:hover {
+  @apply bg-gray-300 border-gray-400 text-black;
+}
+.btn-gray:disabled:not(.btn-flat) {
+  @apply bg-gray-200 border-gray-200 text-gray-400 cursor-not-allowed pointer-events-none;
+}
+
+.btn-green {
+  @apply bg-green-500 py-2 px-8 text-white;
+}
+.btn-green:hover {
+  @apply bg-green-700 border-green-800 text-white;
+}
+.btn-green.btn-soft {
+  @apply bg-green-300 border-green-400 text-green-800;
+}
+.btn-green.btn-soft:hover {
+  @apply bg-green-400 border-green-600 text-white;
+}
+.btn-green.btn-flat {
+  @apply text-white;
+}
+.btn-green.btn-flat:hover {
+  @apply bg-gray-300 border-gray-400 text-black;
+}
+.btn-green:disabled:not(.btn-flat) {
+  @apply bg-green-200 border-gray-200 text-green-400 cursor-not-allowed pointer-events-none;
+}
+
+.btn-black {
+  @apply bg-black py-2 px-8 border-b-2 border-black;
+}
+.btn-black:hover {
+  @apply bg-black border-black;
+}
+.btn-black.btn-soft {
+  @apply bg-black border-black text-white;
+}
+.btn-black.btn-soft:hover {
+  @apply bg-black border-black text-white;
+}
+.btn-black.btn-flat {
+  @apply text-white;
+}
+.btn-black.btn-flat:hover {
+  @apply bg-gray-300 border-gray-400 text-white;
+}
+.btn-black:disabled:not(.btn-flat) {
+  @apply bg-black border-gray-200 text-white cursor-not-allowed pointer-events-none;
+}
+
+.btn-purple {
+  @apply bg-purple-500 py-2 px-8 border-b-2 border-purple-700;
+}
+.btn-purple:hover {
+  @apply bg-purple-700 border-purple-800;
+}
+.btn-purple.btn-soft {
+  @apply bg-purple-200 border-purple-400 text-purple-700;
+}
+.btn-purple.btn-soft:hover {
+  @apply bg-purple-400 border-purple-600 text-white;
+}
+.btn-purple.btn-flat {
+  @apply text-purple-700;
+}
+.btn-purple.btn-flat:hover {
+  @apply bg-gray-300 border-gray-400 text-black;
+}
+.btn-purple:disabled {
+  @apply bg-purple-200 border-gray-200 text-purple-400 cursor-not-allowed pointer-events-none;
+}
+
+.btn-info {
+  @apply bg-blue-400 py-2 px-8 border-b-2 border-blue-600;
+}
+.btn-info:hover {
+  @apply bg-blue-500 border-blue-700;
+}
+.btn-info.btn-soft {
+  @apply bg-blue-200 border-blue-400 text-blue-700;
+}
+.btn-info.btn-soft:hover {
+  @apply bg-blue-400 border-blue-600 text-white;
+}
+.btn-info.btn-flat {
+  @apply text-blue-700;
+}
+.btn-info.btn-flat:hover {
+  @apply bg-gray-300 border-gray-400 text-black;
+}
+.btn-info:disabled {
+  @apply bg-blue-200 border-gray-200 text-blue-400 cursor-not-allowed pointer-events-none;
+}
+
+.btn-success {
+  @apply bg-success-500 py-2 px-8 border-b-2 border-success-700;
+}
+.btn-success:hover {
+  @apply bg-success-700 border-success-800;
+}
+.btn-success.btn-soft {
+  @apply bg-success-200 border-success-400 text-success-700;
+}
+.btn-success.btn-soft:hover {
+  @apply bg-success-400 border-success-600 text-white;
+}
+.btn-success.btn-flat {
+  @apply text-success-700;
+}
+.btn-success.btn-flat:hover {
+  @apply bg-gray-300 border-gray-400 text-black;
+}
+.btn-success:disabled {
+  @apply bg-success-200 border-gray-200 text-success-400 cursor-not-allowed pointer-events-none;
+}
+
+.btn-orange {
+  @apply bg-orange-500 py-2 px-8 border-b-2 border-orange-700;
+}
+.btn-orange:hover {
+  @apply bg-orange-700;
+}
+.btn-orange.btn-soft {
+  @apply bg-orange-200 text-orange-700;
+}
+.btn-orange.btn-soft:hover {
+  @apply bg-orange-400 text-white;
+}
+.btn-orange.btn-flat {
+  @apply text-orange-500;
+}
+.btn-orange.btn-flat:hover {
+  @apply bg-orange-300 border-orange-400 text-black;
+}
+.btn-orange:disabled {
+  @apply bg-orange-200 border-gray-200 text-orange-400 cursor-not-allowed pointer-events-none;
+}
+
+.btn-yellow {
+  @apply bg-yellow-500 py-2 px-8 border-b-2 border-yellow-700;
+}
+.btn-yellow:hover {
+  @apply bg-yellow-700 border-yellow-800;
+}
+.btn-yellow.btn-soft {
+  @apply bg-yellow-200 border-yellow-400 text-yellow-700;
+}
+.btn-yellow.btn-soft:hover {
+  @apply bg-yellow-400 border-yellow-600 text-white;
+}
+.btn-yellow.btn-flat {
+  @apply text-yellow-700;
+}
+.btn-yellow.btn-flat:hover {
+  @apply bg-gray-300 border-gray-400 text-black;
+}
+.btn-yellow:disabled {
+  @apply bg-yellow-200 border-gray-200 text-yellow-400 cursor-not-allowed pointer-events-none;
+}
+
+.btn-cyan {
+  @apply bg-cyan-500 py-2 px-8 border-b-2 border-cyan-700;
+}
+.btn-cyan:hover {
+  @apply bg-cyan-700;
+}
+.btn-cyan.btn-soft {
+  @apply bg-cyan-200 text-cyan-700;
+}
+.btn-cyan.btn-soft:hover {
+  @apply bg-cyan-400 text-white;
+}
+.btn-cyan.btn-flat {
+  @apply text-cyan-500;
+}
+.btn-cyan.btn-flat:hover {
+  @apply bg-cyan-300 border-cyan-400 text-black;
+}
+.btn-cyan:disabled {
+  @apply bg-cyan-200 border-gray-200 text-cyan-400 cursor-not-allowed pointer-events-none;
+}
+
+.btn-danger {
+  @apply bg-red-600 py-2 px-8;
+}
+.btn-danger:hover {
+  @apply bg-red-700 border-red-900;
+}
+.btn-danger.btn-soft {
+  @apply bg-red-200 border-red-400 text-red-700;
+}
+.btn-danger.btn-soft:hover {
+  @apply bg-red-400 border-red-600 text-white;
+}
+.btn-danger.btn-flat {
+  @apply text-red-700;
+}
+.btn-danger.btn-flat:hover {
+  @apply bg-red-200 border-red-400 text-red-800;
+}
+.btn-danger:disabled {
+  @apply bg-red-100 border-gray-200 text-red-500 cursor-not-allowed pointer-events-none;
+}
+
+.btn-red-secondary {
+  @apply bg-transparent py-2 px-8 text-red-700;
+}
+.btn-red-secondary:hover {
+  @apply bg-red-700 text-white;
+}
+.btn-red-secondary.btn-soft {
+  @apply bg-red-200 border-red-400 text-red-700;
+}
+.btn-red-secondary.btn-soft:hover {
+  @apply bg-red-400 border-red-600 text-white;
+}
+.btn-red-secondary.btn-flat {
+  @apply text-red-700;
+}
+.btn-red-secondary.btn-flat:hover {
+  @apply bg-red-200 border-red-400 text-red-800;
+}
+.btn-red-secondary:disabled {
+  @apply bg-red-100 border-gray-200 text-red-400 cursor-not-allowed pointer-events-none;
+}
+
+.btn-warning {
+  @apply bg-orange-600 py-2 px-8 border-b-2 border-orange-700;
+}
+.btn-warning:hover {
+  @apply bg-orange-700 border-orange-900;
+}
+.btn-warning.btn-soft {
+  @apply bg-orange-200 border-orange-400 text-orange-700;
+}
+.btn-warning.btn-soft:hover {
+  @apply bg-orange-400 border-orange-600 text-white;
+}
+.btn-warning.btn-flat {
+  @apply text-orange-700;
+}
+.btn-warning.btn-flat:hover {
+  @apply bg-orange-200 border-orange-400 text-orange-800;
+}
+.btn-warning:disabled {
+  @apply bg-orange-100 border-gray-200 text-orange-400 cursor-not-allowed pointer-events-none;
+}
+
+.btn-secondary {
+  @apply bg-gray-600 py-2 px-8 border-b-2 border-gray-700;
+}
+.btn-secondary:hover {
+  @apply bg-gray-700 border-gray-900;
+}
+.btn-secondary.btn-soft {
+  @apply bg-gray-200 border-gray-400 text-gray-700;
+}
+.btn-secondary.btn-soft:hover {
+  @apply bg-gray-400 border-gray-600 text-white;
+}
+.btn-secondary.btn-flat {
+  @apply text-gray-700;
+}
+.btn-secondary.btn-flat:hover {
+  @apply bg-gray-200 border-gray-400 text-gray-800;
+}
+.btn-secondary:disabled {
+  @apply bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed pointer-events-none;
+}
+
+.btn-white {
+  @apply bg-white py-2 px-8 border border-primary-300 text-primary-500;
+}
+.btn-white:hover {
+  @apply bg-primary-200;
+}
+.btn-white.btn-soft {
+  @apply bg-white border-white text-white;
+}
+.btn-white.btn-soft:hover {
+  @apply bg-white border-white text-white;
+}
+.btn-white.btn-flat {
+  @apply text-primary-500;
+}
+.btn-white.btn-flat:hover {
+  @apply bg-gray-100 text-primary-500;
+}
+.btn-white:disabled {
+  @apply bg-white border-white text-white cursor-not-allowed pointer-events-none;
+}
+
+.btn-sm {
+  @apply py-1 px-4 rounded-md text-xs;
+}
+
+.btn-rounded {
+  @apply rounded-full;
+}
+
+.btn-flat {
+  @apply bg-transparent  shadow-none font-bold;
+}
+.btn-flat:disabled {
+  @apply cursor-not-allowed pointer-events-none;
+}
+
+.btn-block {
+  @apply block w-full;
+}
+
+.btn-outlined {
+  @apply bg-transparent border-2 shadow-none font-bold;
+}
