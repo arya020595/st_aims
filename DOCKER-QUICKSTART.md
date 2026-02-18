@@ -6,11 +6,11 @@
 
 ## Prerequisites
 
-| Tool             | Minimum Version | Check Command            |
-|------------------|-----------------|--------------------------|
-| Docker           | 20.10+          | `docker --version`       |
-| Docker Compose   | 2.0+ (V2)       | `docker compose version` |
-| Git              | 2.x             | `git --version`          |
+| Tool           | Minimum Version | Check Command            |
+| -------------- | --------------- | ------------------------ |
+| Docker         | 20.10+          | `docker --version`       |
+| Docker Compose | 2.0+ (V2)       | `docker compose version` |
+| Git            | 2.x             | `git --version`          |
 
 > **Disk space:** ~10 GB for Docker images + database volumes.
 
@@ -59,13 +59,13 @@ Development mode provides **live-reload** — your source code is mounted into c
 
 ### What you get
 
-| Feature                       | Details                                    |
-|-------------------------------|-------------------------------------------|
-| Hot reload (GraphQL)          | nodemon watches all files, restarts on change |
-| Hot reload (App)              | Next.js HMR for pages/components + nodemon for server |
-| GraphQL Playground            | Enabled at http://localhost:4000/graphql   |
-| Debug-friendly errors         | Full stack traces in responses             |
-| Source code mounted           | Edit locally → see changes in container    |
+| Feature               | Details                                               |
+| --------------------- | ----------------------------------------------------- |
+| Hot reload (GraphQL)  | nodemon watches all files, restarts on change         |
+| Hot reload (App)      | Next.js HMR for pages/components + nodemon for server |
+| GraphQL Playground    | Enabled at http://localhost:4000/graphql              |
+| Debug-friendly errors | Full stack traces in responses                        |
+| Source code mounted   | Edit locally → see changes in container               |
 
 ### Start
 
@@ -93,13 +93,13 @@ docker compose -f docker-compose.dev.yml ps
 
 ### Access
 
-| Service             | URL                                      |
-|---------------------|------------------------------------------|
-| App (Frontend)      | http://localhost:3001                     |
-| GraphQL Playground  | http://localhost:4000/graphql             |
-| MySQL               | `localhost:3306`                          |
-| Redis               | `localhost:6379`                          |
-| ClickHouse HTTP     | http://localhost:8123                     |
+| Service            | URL                           |
+| ------------------ | ----------------------------- |
+| App (Frontend)     | http://localhost:3001         |
+| GraphQL Playground | http://localhost:4000/graphql |
+| MySQL              | `localhost:3306`              |
+| Redis              | `localhost:6379`              |
+| ClickHouse HTTP    | http://localhost:8123         |
 
 ### Logs
 
@@ -139,13 +139,13 @@ Production mode builds **optimized images** with pre-compiled Next.js bundles. N
 
 ### What you get
 
-| Feature                     | Details                                      |
-|-----------------------------|----------------------------------------------|
-| Pre-built Next.js           | `next build` runs during image build         |
-| NODE_ENV=production         | GraphQL Playground disabled, optimized React  |
-| No source mount             | Self-contained images, deploy anywhere        |
-| Health checks               | MySQL, Redis, ClickHouse auto-recovery        |
-| Auto-restart                | `restart: unless-stopped` on all services     |
+| Feature             | Details                                      |
+| ------------------- | -------------------------------------------- |
+| Pre-built Next.js   | `next build` runs during image build         |
+| NODE_ENV=production | GraphQL Playground disabled, optimized React |
+| No source mount     | Self-contained images, deploy anywhere       |
+| Health checks       | MySQL, Redis, ClickHouse auto-recovery       |
+| Auto-restart        | `restart: unless-stopped` on all services    |
 
 ### Start
 
@@ -178,10 +178,10 @@ curl -s http://localhost:4000/graphql -H 'Content-Type: application/json' \
 
 ### Access
 
-| Service        | URL                                      |
-|----------------|------------------------------------------|
-| App (Frontend) | http://localhost:3001                     |
-| GraphQL API    | http://localhost:4000/graphql             |
+| Service        | URL                           |
+| -------------- | ----------------------------- |
+| App (Frontend) | http://localhost:3001         |
+| GraphQL API    | http://localhost:4000/graphql |
 
 > In production, GraphQL Playground is disabled. Use the API endpoint directly.
 
@@ -223,30 +223,30 @@ docker compose up -d
 
 ### Command Cheat Sheet
 
-| Action                          | Development                                           | Production                     |
-|---------------------------------|-------------------------------------------------------|--------------------------------|
-| **Build**                       | `docker compose -f docker-compose.dev.yml build`      | `docker compose build`         |
-| **Start**                       | `docker compose -f docker-compose.dev.yml up -d`      | `docker compose up -d`         |
-| **Stop**                        | `docker compose -f docker-compose.dev.yml down`       | `docker compose down`          |
-| **Logs**                        | `docker compose -f docker-compose.dev.yml logs -f`    | `docker compose logs -f`       |
-| **Status**                      | `docker compose -f docker-compose.dev.yml ps`         | `docker compose ps`            |
-| **Rebuild**                     | `docker compose -f docker-compose.dev.yml build --no-cache` | `docker compose build --no-cache` |
-| **Shell into GraphQL**          | `docker exec -it aims-dev-graphql sh`                 | `docker exec -it aims-graphql sh` |
-| **Shell into App**              | `docker exec -it aims-dev-app sh`                     | `docker exec -it aims-app sh`  |
-| **Run Prisma migrate**          | `docker exec -it aims-dev-graphql npx prisma db push` | `docker exec -it aims-graphql npx prisma db push` |
-| **Reset database**              | `docker compose -f docker-compose.dev.yml down -v`    | `docker compose down -v`       |
+| Action                 | Development                                                 | Production                                        |
+| ---------------------- | ----------------------------------------------------------- | ------------------------------------------------- |
+| **Build**              | `docker compose -f docker-compose.dev.yml build`            | `docker compose build`                            |
+| **Start**              | `docker compose -f docker-compose.dev.yml up -d`            | `docker compose up -d`                            |
+| **Stop**               | `docker compose -f docker-compose.dev.yml down`             | `docker compose down`                             |
+| **Logs**               | `docker compose -f docker-compose.dev.yml logs -f`          | `docker compose logs -f`                          |
+| **Status**             | `docker compose -f docker-compose.dev.yml ps`               | `docker compose ps`                               |
+| **Rebuild**            | `docker compose -f docker-compose.dev.yml build --no-cache` | `docker compose build --no-cache`                 |
+| **Shell into GraphQL** | `docker exec -it aims-dev-graphql sh`                       | `docker exec -it aims-graphql sh`                 |
+| **Shell into App**     | `docker exec -it aims-dev-app sh`                           | `docker exec -it aims-app sh`                     |
+| **Run Prisma migrate** | `docker exec -it aims-dev-graphql npx prisma db push`       | `docker exec -it aims-graphql npx prisma db push` |
+| **Reset database**     | `docker compose -f docker-compose.dev.yml down -v`          | `docker compose down -v`                          |
 
 ### Files Overview
 
-| File                        | Purpose                                             |
-|-----------------------------|-----------------------------------------------------|
-| `docker-compose.yml`        | **Production** — builds optimized images            |
-| `docker-compose.dev.yml`    | **Development** — volume mounts, live-reload        |
-| `services/graphql/Dockerfile` | GraphQL service image (node:18-slim + Prisma)     |
-| `services/app/Dockerfile`   | App service image (node:18-slim + Next.js build)    |
-| `.dockerignore`             | Excludes node_modules, .next, .env from build context |
-| `.env`                      | Environment variables (loaded by Docker Compose)     |
-| `.env.example`              | Template for `.env`                                  |
+| File                          | Purpose                                               |
+| ----------------------------- | ----------------------------------------------------- |
+| `docker-compose.yml`          | **Production** — builds optimized images              |
+| `docker-compose.dev.yml`      | **Development** — volume mounts, live-reload          |
+| `services/graphql/Dockerfile` | GraphQL service image (node:18-slim + Prisma)         |
+| `services/app/Dockerfile`     | App service image (node:18-slim + Next.js build)      |
+| `.dockerignore`               | Excludes node_modules, .next, .env from build context |
+| `.env`                        | Environment variables (loaded by Docker Compose)      |
+| `.env.example`                | Template for `.env`                                   |
 
 ### Architecture in Docker
 
