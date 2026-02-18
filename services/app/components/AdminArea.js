@@ -1,7 +1,5 @@
 import React, { Component, useCallback, useEffect, useState } from "react";
-// import SidebarDemo from "./SidebarDemo";
 import Sidebar from "./Sidebar";
-import SidebarDemo from "./SidebarDemo";
 import Head from "next/head";
 import Error from "next/error";
 import { useQuery, useMutation, useApolloClient } from "@apollo/client";
