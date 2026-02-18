@@ -75,6 +75,12 @@ docker compose -f docker-compose.dev.yml build
 
 # Start all services
 docker compose -f docker-compose.dev.yml up -d
+
+# ⚠️ First-time only: create database tables (wait ~30s for MySQL to be healthy first)
+docker exec -it aims-dev-graphql npx prisma db push --schema ./prisma/schema.prisma
+
+# Restart GraphQL & App after DB is initialized
+docker compose -f docker-compose.dev.yml restart graphql app
 ```
 
 ### Verify
@@ -155,6 +161,12 @@ docker compose build
 
 # Start all services
 docker compose up -d
+
+# ⚠️ First-time only: create database tables (wait ~30s for MySQL to be healthy first)
+docker exec -it aims-graphql npx prisma db push --schema ./prisma/schema.prisma
+
+# Restart GraphQL & App after DB is initialized
+docker compose restart graphql app
 ```
 
 ### Verify
