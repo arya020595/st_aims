@@ -75,20 +75,20 @@
 
 ## Technology Stack
 
-| Layer         | Technology                                          |
-|---------------|-----------------------------------------------------|
-| Frontend      | Next.js 10, React 17, Tailwind CSS, Framer Motion   |
-| Backend       | Apollo Server Express 2.x, Express 4, Prisma 4      |
-| Database      | MySQL 8.0 (primary), ClickHouse (analytics)          |
-| Cache         | Redis 7 (via ioredis)                                |
-| Storage       | AWS S3 (file uploads, presigned URLs)                |
-| Auth          | JWT (jsonwebtoken), bcryptjs, Active Directory       |
-| Monorepo      | Yarn 1.x Workspaces + Lerna 3.22                    |
-| Containerize  | Docker, Docker Compose                               |
-| PDF           | pdfmake (with custom fonts: Roboto, Poppins, etc.)  |
-| Excel         | exceljs                                              |
-| Email         | nodemailer                                           |
-| Notifications | Telegram Bot API, Discord Webhooks, Slack Webhooks   |
+| Layer         | Technology                                         |
+| ------------- | -------------------------------------------------- |
+| Frontend      | Next.js 10, React 17, Tailwind CSS, Framer Motion  |
+| Backend       | Apollo Server Express 2.x, Express 4, Prisma 4     |
+| Database      | MySQL 8.0 (primary), ClickHouse (analytics)        |
+| Cache         | Redis 7 (via ioredis)                              |
+| Storage       | AWS S3 (file uploads, presigned URLs)              |
+| Auth          | JWT (jsonwebtoken), bcryptjs, Active Directory     |
+| Monorepo      | Yarn 1.x Workspaces + Lerna 3.22                   |
+| Containerize  | Docker, Docker Compose                             |
+| PDF           | pdfmake (with custom fonts: Roboto, Poppins, etc.) |
+| Excel         | exceljs                                            |
+| Email         | nodemailer                                         |
+| Notifications | Telegram Bot API, Discord Webhooks, Slack Webhooks |
 
 ---
 
@@ -292,6 +292,7 @@ The GraphQL service uses a **dynamic schema loading** pattern:
 4. Custom types are shared across all modules via `composeTypeDefs`
 
 **Key features:**
+
 - **Authentication:** JWT-based with `authenticate()` middleware on every request
 - **Data Loaders:** Batched database queries via DataLoader to prevent N+1 problems
 - **File Operations:** Excel import/export, PDF generation, S3 file uploads
@@ -300,15 +301,15 @@ The GraphQL service uses a **dynamic schema loading** pattern:
 
 **Domain modules (102 total):**
 
-| Domain          | Modules                                                    |
-|-----------------|------------------------------------------------------------|
-| **Crops**       | CropsFruit, CropsVegetable, PaddyProduction, CropsCutFlower, CropsOrnamentalPlant, MiscellaneousCrops, etc. |
-| **Livestock**   | Livestock, LivestockCategory, LivestockFeed, Broiler, DayOldChick, FertilizedEgg, TableEgg, RuminantProduction, etc. |
-| **BioSecurity** | BioSecurityImportData, BioSecurityCompliance, BioSecurityNonCompliance*, BioSecurityCountry, etc. |
-| **Agrifood**    | AgrifoodProduction, AgrifoodCompanyProfile, AgrifoodPremiseProfile, FoodSampling, SEFIRental, etc. |
-| **Profiling**   | FarmerProfile, FarmProfile, CompanyStatus, ContractStatus, Machinery, ModernTechnology, etc. |
-| **Retail Price**| RetailPrice, FruitRetailPrice, VegetableRetailPrice, MiscellaneousCropsRetailPrice, CropRetailPrice |
-| **System**      | User, Notification, CPUUtilization, Test                   |
+| Domain           | Modules                                                                                                              |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------- |
+| **Crops**        | CropsFruit, CropsVegetable, PaddyProduction, CropsCutFlower, CropsOrnamentalPlant, MiscellaneousCrops, etc.          |
+| **Livestock**    | Livestock, LivestockCategory, LivestockFeed, Broiler, DayOldChick, FertilizedEgg, TableEgg, RuminantProduction, etc. |
+| **BioSecurity**  | BioSecurityImportData, BioSecurityCompliance, BioSecurityNonCompliance\*, BioSecurityCountry, etc.                   |
+| **Agrifood**     | AgrifoodProduction, AgrifoodCompanyProfile, AgrifoodPremiseProfile, FoodSampling, SEFIRental, etc.                   |
+| **Profiling**    | FarmerProfile, FarmProfile, CompanyStatus, ContractStatus, Machinery, ModernTechnology, etc.                         |
+| **Retail Price** | RetailPrice, FruitRetailPrice, VegetableRetailPrice, MiscellaneousCropsRetailPrice, CropRetailPrice                  |
+| **System**       | User, Notification, CPUUtilization, Test                                                                             |
 
 ### App (Frontend) Service
 
@@ -323,6 +324,7 @@ The App service is a custom Express server wrapping Next.js:
 5. **Service Workers:** Firebase messaging service worker registration
 
 **Page domains (144 pages across 20+ directories):**
+
 - Dashboards (overall, agrifood, biosecurity, crops, livestock)
 - Data entry forms (production data, retail prices, import data)
 - Master data management (categories, units, locations, etc.)
@@ -335,18 +337,18 @@ The App service is a custom Express server wrapping Next.js:
 
 The Prisma schema (`services/graphql/prisma/schema.prisma`) defines **106 models** across these domains:
 
-| Domain                  | Key Models                                                          |
-|-------------------------|---------------------------------------------------------------------|
-| **User & Auth**         | User, UserRole, ActivityLogs                                        |
-| **Livestock**           | Livestock, LivestockCategory, LivestockCommodity, AnimalFeed        |
-| **Poultry**             | Broiler, DayOldChick, FertilizedEgg, TableEgg, PoultryHouse        |
-| **Ruminant**            | RuminantStock, RuminantProduction, RuminantPens                     |
-| **Crops**               | CropsFruit, CropsVegetable, PaddyProduction, Season, FarmProfile   |
-| **Floriculture**        | CropsCutFlower, CropsOrnamentalPlant, CropsSellingLocation          |
-| **BioSecurity**         | BioSecurityImportData, BioSecurityCompliance, BioSecurityCountry    |
-| **Agrifood**            | AgrifoodProduction, AgrifoodProduct, ProductCatalogue, FoodSampling |
-| **Retail Price**        | RetailPrice, FruitRetailPrice, VegetableRetailPrice                 |
-| **Profiling**           | FarmerProfile, FarmProfile, CompanyStatus, Machinery                |
+| Domain           | Key Models                                                          |
+| ---------------- | ------------------------------------------------------------------- |
+| **User & Auth**  | User, UserRole, ActivityLogs                                        |
+| **Livestock**    | Livestock, LivestockCategory, LivestockCommodity, AnimalFeed        |
+| **Poultry**      | Broiler, DayOldChick, FertilizedEgg, TableEgg, PoultryHouse         |
+| **Ruminant**     | RuminantStock, RuminantProduction, RuminantPens                     |
+| **Crops**        | CropsFruit, CropsVegetable, PaddyProduction, Season, FarmProfile    |
+| **Floriculture** | CropsCutFlower, CropsOrnamentalPlant, CropsSellingLocation          |
+| **BioSecurity**  | BioSecurityImportData, BioSecurityCompliance, BioSecurityCountry    |
+| **Agrifood**     | AgrifoodProduction, AgrifoodProduct, ProductCatalogue, FoodSampling |
+| **Retail Price** | RetailPrice, FruitRetailPrice, VegetableRetailPrice                 |
+| **Profiling**    | FarmerProfile, FarmProfile, CompanyStatus, Machinery                |
 
 ---
 
@@ -421,13 +423,13 @@ docker compose down -v
 
 **Docker services:**
 
-| Service      | Container         | Port(s)      | Image                             |
-|-------------|-------------------|--------------|-----------------------------------|
-| MySQL       | aims-mysql        | 3306         | mysql:8.0                         |
-| Redis       | aims-redis        | 6379         | redis:7-alpine                    |
-| ClickHouse  | aims-clickhouse   | 8123, 9000   | clickhouse/clickhouse-server      |
-| GraphQL API | aims-graphql      | 4000         | Custom (node:18-slim)             |
-| App         | aims-app          | 3001         | Custom (node:18-slim)             |
+| Service     | Container       | Port(s)    | Image                        |
+| ----------- | --------------- | ---------- | ---------------------------- |
+| MySQL       | aims-mysql      | 3306       | mysql:8.0                    |
+| Redis       | aims-redis      | 6379       | redis:7-alpine               |
+| ClickHouse  | aims-clickhouse | 8123, 9000 | clickhouse/clickhouse-server |
+| GraphQL API | aims-graphql    | 4000       | Custom (node:18-slim)        |
+| App         | aims-app        | 3001       | Custom (node:18-slim)        |
 
 ---
 
@@ -435,26 +437,26 @@ docker compose down -v
 
 All environment variables are documented in [`.env.example`](.env.example).
 
-| Variable               | Service  | Default                      | Description                        |
-|------------------------|----------|------------------------------|------------------------------------|
-| `APP_PORT`             | App      | `3001`                       | Frontend service port              |
-| `GRAPHQL_API_HOST`     | App      | `localhost`                  | GraphQL service hostname           |
-| `GRAPHQL_API_PORT`     | Both     | `4000`                       | GraphQL service port               |
-| `TOKENIZE`             | Both     | —                            | JWT signing secret                 |
-| `DB_HOST`              | GraphQL  | `localhost`                  | MySQL host                         |
-| `DB_USER`              | GraphQL  | `root`                       | MySQL user                         |
-| `DB_PASSWORD`          | GraphQL  | —                            | MySQL password                     |
-| `DB_NAME`              | GraphQL  | `doa_db`                     | MySQL database name                |
-| `DATABASE_URL`         | GraphQL  | —                            | Prisma connection string           |
-| `REDIS_HOST`           | GraphQL  | `localhost`                  | Redis host                         |
-| `REDIS_PORT`           | GraphQL  | `6379`                       | Redis port                         |
-| `CLICKHOUSE_URL`       | GraphQL  | —                            | ClickHouse HTTP URL                |
-| `CLICKHOUSE_PORT`      | GraphQL  | `8123`                       | ClickHouse port                    |
-| `S3_ACCESS_KEY`        | Both     | —                            | AWS S3 access key (optional)       |
-| `S3_SECRET_KEY`        | Both     | —                            | AWS S3 secret key (optional)       |
-| `S3_BUCKET_NAME`       | App      | —                            | S3 bucket for file uploads         |
-| `TELEGRAM_BOT_TOKEN`   | GraphQL  | —                            | Telegram notifications (optional)  |
-| `DISCORD_WEBHOOK_URL`  | GraphQL  | —                            | Discord notifications (optional)   |
+| Variable              | Service | Default     | Description                       |
+| --------------------- | ------- | ----------- | --------------------------------- |
+| `APP_PORT`            | App     | `3001`      | Frontend service port             |
+| `GRAPHQL_API_HOST`    | App     | `localhost` | GraphQL service hostname          |
+| `GRAPHQL_API_PORT`    | Both    | `4000`      | GraphQL service port              |
+| `TOKENIZE`            | Both    | —           | JWT signing secret                |
+| `DB_HOST`             | GraphQL | `localhost` | MySQL host                        |
+| `DB_USER`             | GraphQL | `root`      | MySQL user                        |
+| `DB_PASSWORD`         | GraphQL | —           | MySQL password                    |
+| `DB_NAME`             | GraphQL | `doa_db`    | MySQL database name               |
+| `DATABASE_URL`        | GraphQL | —           | Prisma connection string          |
+| `REDIS_HOST`          | GraphQL | `localhost` | Redis host                        |
+| `REDIS_PORT`          | GraphQL | `6379`      | Redis port                        |
+| `CLICKHOUSE_URL`      | GraphQL | —           | ClickHouse HTTP URL               |
+| `CLICKHOUSE_PORT`     | GraphQL | `8123`      | ClickHouse port                   |
+| `S3_ACCESS_KEY`       | Both    | —           | AWS S3 access key (optional)      |
+| `S3_SECRET_KEY`       | Both    | —           | AWS S3 secret key (optional)      |
+| `S3_BUCKET_NAME`      | App     | —           | S3 bucket for file uploads        |
+| `TELEGRAM_BOT_TOKEN`  | GraphQL | —           | Telegram notifications (optional) |
+| `DISCORD_WEBHOOK_URL` | GraphQL | —           | Discord notifications (optional)  |
 
 **Note:** Both services load the root `.env` file via `require("dotenv").config({ path: "../../.env" })`. The GraphQL service also reads `services/graphql/.env` for Prisma-specific variables (`DATABASE_URL`).
 
@@ -473,6 +475,7 @@ cd services/graphql && npx spectaql spectaql-config.yml
 ```
 
 Access the GraphQL Playground (development mode only):
+
 - http://localhost:4000/graphql
 
 ---
@@ -481,14 +484,14 @@ Access the GraphQL Playground (development mode only):
 
 Located in `services/graphql/utilities/`:
 
-| Script                        | Usage                              | Description                         |
-|-------------------------------|------------------------------------|-------------------------------------|
-| `db-backup.js`                | `yarn db:backup`                   | Full database backup                |
-| `db-restore.js`               | `yarn db:restore`                  | Restore from backup                 |
-| `db-backup.js --minimal`      | `yarn db:backup:minimal`           | Minimal backup (structure only)     |
-| `denormalize/*.js`            | `node utilities/denormalize/...`   | Data denormalization for reports    |
-| `daily-cocoa-price-scheduler.js` | `node utilities/...`            | Scheduled cocoa price fetcher       |
-| `countDataAllCollection.js`   | `node utilities/...`               | Count records across all tables     |
+| Script                           | Usage                            | Description                      |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| `db-backup.js`                   | `yarn db:backup`                 | Full database backup             |
+| `db-restore.js`                  | `yarn db:restore`                | Restore from backup              |
+| `db-backup.js --minimal`         | `yarn db:backup:minimal`         | Minimal backup (structure only)  |
+| `denormalize/*.js`               | `node utilities/denormalize/...` | Data denormalization for reports |
+| `daily-cocoa-price-scheduler.js` | `node utilities/...`             | Scheduled cocoa price fetcher    |
+| `countDataAllCollection.js`      | `node utilities/...`             | Count records across all tables  |
 
 ---
 

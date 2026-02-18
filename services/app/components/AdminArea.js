@@ -1,17 +1,12 @@
-import React, { Component, useCallback, useEffect, useState } from "react";
-import Sidebar from "./Sidebar";
-import Head from "next/head";
-import Error from "next/error";
-import { useQuery, useMutation, useApolloClient } from "@apollo/client";
-import gql from "graphql-tag";
-import Link from "next/link";
-import Header from "./Header";
-import { withApollo } from "../libs/apollo";
-import { AnimatePresence, motion } from "framer-motion";
+import { useMutation, useQuery } from "@apollo/client";
 import cookie from "cookie";
-import { useLocalStorage } from "../libs/localStorage";
 import dayjs from "dayjs";
-import { FormModal } from "../components/Modal";
+import { AnimatePresence, motion } from "framer-motion";
+import gql from "graphql-tag";
+import { useCallback, useEffect, useState } from "react";
+import { useLocalStorage } from "../libs/localStorage";
+import Header from "./Header";
+import Sidebar from "./Sidebar";
 const CURRENT_USER = gql`
   query currentUser {
     currentUser {
@@ -39,7 +34,7 @@ const AdminArea = ({ urlQuery, children }) => {
 
   const [latestLoadAdminArea, setLatestLoadAdminArea] = useLocalStorage(
     "latestLoadAdminArea",
-    dayjs().toISOString()
+    dayjs().toISOString(),
   );
 
   const { data, error, loading, refetch } = useQuery(CURRENT_USER);
@@ -162,7 +157,7 @@ const AdminArea = ({ urlQuery, children }) => {
   useEffect(() => {
     localStorage.setItem(
       `userId_${currentUser?._id || ""}`,
-      elapsedTimeInSeconds
+      elapsedTimeInSeconds,
     );
   }, [elapsedTimeInSeconds]);
 
@@ -182,8 +177,7 @@ const AdminArea = ({ urlQuery, children }) => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.1, delay: 0 }}
-              className={`w-full md:hidden bg-white h-full fixed top-0 left-0 shadow-lg transition-all duration-40 z-20 overflow-y-scroll`}
-            >
+              className={`w-full md:hidden bg-white h-full fixed top-0 left-0 shadow-lg transition-all duration-40 z-20 overflow-y-scroll`}>
               <Sidebar
                 onClose={(e) => {
                   if (e) e.preventDefault();
@@ -197,8 +191,7 @@ const AdminArea = ({ urlQuery, children }) => {
           ) : null}
         </AnimatePresence>
         <div
-          className={`hidden md:block ${widthContent.contentLeft} w-2/12 bg-white h-full sticky top-0 shadow-lg transition-all duration-40 z-20`}
-        >
+          className={`hidden md:block ${widthContent.contentLeft} w-2/12 bg-white h-full sticky top-0 shadow-lg transition-all duration-40 z-20`}>
           <Sidebar
             sidebarWidth={widthContent.contentLeft}
             urlQuery={urlQuery}
@@ -207,8 +200,7 @@ const AdminArea = ({ urlQuery, children }) => {
         </div>
 
         <div
-          className={`${widthContent.contentRight} w-full md:w-10/12 h-full pl-4 md:pl-10 pr-4 md:pr-0`}
-        >
+          className={`${widthContent.contentRight} w-full md:w-10/12 h-full pl-4 md:pl-10 pr-4 md:pr-0`}>
           {children}
 
           {elapsedTimeInSeconds > 0 ? (
@@ -290,7 +282,7 @@ export const useCurrentUser = () => {
       }
       return true;
     },
-    [currentUser]
+    [currentUser],
   );
 
   return {

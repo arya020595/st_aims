@@ -53,7 +53,7 @@ for (const dir of schemaDirs) {
       `Error loading custom types from ${
         dir.split("/")[dir.split("/").length - 1]
       }/types`,
-      e.message
+      e.message,
     );
     // process.exit();
   }
@@ -89,7 +89,7 @@ for (const dir of schemaDirs) {
     console.log(
       // `Error while loading schema of ${dir.split("/")[dir.split("/").length - 1]}!`,
       `Error while loading ${schemaName}/types >>`,
-      e.message
+      e.message,
     );
     // process.exit();
   }
@@ -148,7 +148,7 @@ const start = async () => {
   const bindIp = process.env.GRAPHQL_API_BIND_IP || "localhost";
   await app.listen(port, bindIp, () => {
     console.log(
-      `🚀  GraphQL server ready at http://${bindIp}:${port}${server.graphqlPath}`
+      `🚀  GraphQL server ready at http://${bindIp}:${port}${server.graphqlPath}`,
     );
   });
 };
