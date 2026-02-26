@@ -364,30 +364,43 @@ The Prisma schema (`services/graphql/prisma/schema.prisma`) defines **106 models
 
 ### Local Development
 
+> **Full guide:** See [LOCAL-SETUP.md](LOCAL-SETUP.md) for detailed instructions, troubleshooting, and Node.js 20 workarounds.
+
 ```bash
 # 1. Clone the repository
 git clone git@github.com:arya020595/st_aims.git
 cd st_aims
 
-# 2. Install all dependencies (Yarn Workspaces)
+# 2. Node.js 20+ only: bypass engine compatibility check
+echo '--install.ignore-engines true' > .yarnrc
+
+# 3. Install all dependencies (Yarn Workspaces)
 yarn install
 
-# 3. Configure environment
+# 4. Configure environment
 cp .env.example .env
 cp .env.example services/graphql/.env
 # Edit both .env files with your database credentials
 
-# 4. Generate Prisma client
+# 5. Generate Prisma client
 cd services/graphql && npx prisma generate && cd ../..
 
-# 5. Run database migrations (if needed)
+# 6. Run database migrations (if needed)
 cd services/graphql && npx prisma db push && cd ../..
 
-# 6. Start GraphQL service
+# 7. Node.js 20+ only: patch extract-files
+node -e "
+const pkg = require('./node_modules/extract-files/package.json');
+pkg.exports['./public/*'] = './public/*.js';
+pkg.exports['./public/extractFiles'] = './public/extractFiles.js';
+require('fs').writeFileSync('./node_modules/extract-files/package.json', JSON.stringify(pkg, null, 2) + '\n');
+"
+
+# 8. Start GraphQL service
 cd services/graphql && node index.js
 # → GraphQL server ready at http://localhost:4000/graphql
 
-# 7. Start App service (separate terminal)
+# 9. Start App service (separate terminal)
 cd services/app && NODE_OPTIONS=--openssl-legacy-provider node server/index.js
 # → Ready on http://localhost:3001
 ```
@@ -403,6 +416,8 @@ cd services/app && NODE_OPTIONS=--openssl-legacy-provider yarn app:dev
 ```
 
 ### Docker Deployment
+
+> **Full guide:** See [DOCKER-QUICKSTART.md](DOCKER-QUICKSTART.md) for development vs production modes, troubleshooting, and architecture details.
 
 ```bash
 # Build and start all services (MySQL, Redis, ClickHouse, GraphQL, App)

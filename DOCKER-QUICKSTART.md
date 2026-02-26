@@ -13,6 +13,8 @@
 | Git            | 2.x             | `git --version`          |
 
 > **Disk space:** ~10 GB for Docker images + database volumes.
+>
+> **Local development alongside Docker?** If you also run `yarn install` locally (e.g., for IDE autocompletion), see [LOCAL-SETUP.md](LOCAL-SETUP.md) for the Node.js 20 engine-check workaround (`.yarnrc`).
 
 ---
 

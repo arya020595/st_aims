@@ -16,7 +16,10 @@
 
 > **ClickHouse** is optional — only needed for analytics dashboards. You can skip it for basic development.
 >
-> **Node.js 20 note:** Node 20 works but requires a one-time patch for `extract-files` (see [Known Issues](#known-issues-node-20)).
+> **Node.js 20 note:** Node 20 works but requires two extra steps:
+>
+> 1. A `.yarnrc` file to bypass engine compatibility checks (see [Step 4](#4-clone--install-dependencies))
+> 2. A one-time patch for `extract-files` (see [Step 7](#7-patch-for-nodejs-20-required))
 
 ---
 
@@ -109,12 +112,36 @@ redis-cli ping
 # Clone the repository
 git clone git@github.com:arya020595/st_aims.git
 cd st_aims
+```
 
+### Node.js 20+ — Bypass Engine Check
+
+If you're on **Node.js 20+**, some dependencies (e.g., `@azure/msal-node@1.18.4`) declare engine compatibility only up to Node 18. The project works fine on Node 20, but `yarn install` will fail with:
+
+```
+error @azure/msal-node@1.18.4: The engine "node" is incompatible with this module.
+Expected version "10 || 12 || 14 || 16 || 18". Got "20.x.x"
+```
+
+**Fix — create a `.yarnrc` file** (already included in the repository):
+
+```bash
+# This file should already exist; if not, create it:
+echo '--install.ignore-engines true' > .yarnrc
+```
+
+This tells Yarn to skip engine version checks. On **Node.js 18**, this step is not needed (but having the file is harmless).
+
+### Install Dependencies
+
+```bash
 # Install all dependencies (Yarn Workspaces handles both services)
 yarn install
 ```
 
 > This installs dependencies for both `services/graphql` and `services/app` via Yarn Workspaces.
+>
+> **Note:** You will see many `warning Lockfile has incorrect entry for ...` messages during install. These are **safe to ignore** — they come from stale entries in `yarn.lock` and Yarn resolves them automatically (the lockfile is updated on successful install).
 
 ---
 
@@ -178,19 +205,17 @@ cd services/graphql
 # Generate the Prisma client
 npx prisma generate
 
-# Push the schema to MySQL (creates all 106 tables)
+# Push the schema to MySQL (creates all tables)
 npx prisma db push --schema ./prisma/schema.prisma
 
 cd ../..
 ```
 
-Verify tables were created:
-
-```bash
-mysql -u root -p doa_db -e "SHOW TABLES;" | head -20
-```
-
----
+> **Existing database?** If the database already has data, Prisma may warn about potential data loss (e.g., timestamp precision changes). If you're sure the changes are safe, use:
+>
+> ```bash
+> npx prisma db push --schema ./prisma/schema.prisma --accept-data-loss
+> ```
 
 ## 7. Patch for Node.js 20+ (Required)
 
@@ -415,6 +440,21 @@ require('fs').writeFileSync('./node_modules/extract-files/package.json', JSON.st
 
 > Re-run this after every `yarn install`.
 
+### `@azure/msal-node` engine incompatible (Node 20+)
+
+If you see:
+
+```
+error @azure/msal-node@1.18.4: The engine "node" is incompatible with this module.
+```
+
+Create or verify `.yarnrc` exists in the project root:
+
+```bash
+echo '--install.ignore-engines true' > .yarnrc
+yarn install
+```
+
 ### `Module not found` errors
 
 Re-install dependencies:
@@ -432,6 +472,10 @@ cd services/graphql && npx prisma generate && cd ../..
 ```
 
 If on Node.js 20+, also re-run the extract-files patch (see above).
+
+### Lockfile warnings (`Lockfile has incorrect entry for ...`)
+
+These warnings during `yarn install` are harmless. They occur when `yarn.lock` has stale or mismatched entries. Yarn resolves them automatically and updates the lockfile on successful install. No action required.
 
 ---
 
@@ -482,12 +526,14 @@ These warnings appear during startup and are **safe to ignore**:
 | Action                   | Command                                                                          |
 | ------------------------ | -------------------------------------------------------------------------------- |
 | Install dependencies     | `yarn install`                                                                   |
+| Bypass engine check      | `echo '--install.ignore-engines true' > .yarnrc`                                 |
 | Generate Prisma client   | `cd services/graphql && npx prisma generate`                                     |
 | Push database schema     | `cd services/graphql && npx prisma db push`                                      |
 | Start GraphQL (prod)     | `cd services/graphql && node index.js`                                           |
 | Start GraphQL (dev)      | `yarn graphql:dev`                                                               |
 | Start App (prod)         | `cd services/app && NODE_OPTIONS=--openssl-legacy-provider node server/index.js` |
 | Start App (dev)          | `export NODE_OPTIONS=--openssl-legacy-provider && yarn app:dev`                  |
+| Patch extract-files      | See [Step 7](#7-patch-for-nodejs-20-required) (Node 20+ only)                    |
 | Backup database          | `cd services/graphql && yarn db:backup`                                          |
 | Restore database         | `cd services/graphql && yarn db:restore`                                         |
 | Generate API docs        | `cd services/graphql && npx spectaql spectaql-config.yml`                        |
