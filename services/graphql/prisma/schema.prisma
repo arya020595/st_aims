@@ -330,7 +330,7 @@ model FarmProfile {
   farmerName        String? @map("farmer_name")
   otherFarmerName   String? @map("other_farmer_name") @db.Text
   partnerInvestor   String? @map("partner_inv")
-  address           String? @map("farmer_address")
+  address           String? @map("farmer_address") @db.Text
 
   addresses Json? @map("addresses")
 
