@@ -1639,7 +1639,7 @@ const resolvers = {
 
       let workbook = new Excel.Workbook();
       workbook.creator = "DoAA";
-      let productionSheet = workbook.addWorksheet("");
+      let productionSheet = workbook.addWorksheet("Data Admin");
 
       let columnWidths = [];
       for (let c = 0; c < 10; c++) {
@@ -1861,7 +1861,7 @@ const resolvers = {
 
       let workbook = new Excel.Workbook();
       workbook.creator = "DoAA";
-      let productionSheet = workbook.addWorksheet("");
+      let productionSheet = workbook.addWorksheet("Data Farmer");
 
       let columnWidths = [];
       for (let c = 0; c < 10; c++) {
